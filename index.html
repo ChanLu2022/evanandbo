@@ -24,6 +24,28 @@
       -webkit-font-smoothing:antialiased;
     }
 
+    /* Floating Particles Effect */
+    #particles-js{
+      position:fixed;
+      top:0;left:0;
+      width:100%;
+      height:100%;
+      z-index:1; /* Placed behind header and hero content */
+      pointer-events:none;
+    }
+    .particle{
+      position:absolute;
+      background:rgba(255,255,255,0.4);
+      border-radius:50%;
+      opacity:0;
+      animation:float 10s infinite linear;
+    }
+    @keyframes float {
+      0% {transform:translateY(0) scale(1); opacity:0;}
+      50% {opacity:0.6;}
+      100% {transform:translateY(-1000px) scale(0.5); opacity:0;}
+    }
+
     #hero{
       min-height:84vh;
       display:flex;
@@ -31,6 +53,7 @@
       justify-content:center;
       position:relative;
       overflow:hidden;
+      z-index:10; /* Ensures hero content is above particles */
     }
     .hero-bg{
       position:absolute;
@@ -44,7 +67,7 @@
       background:linear-gradient(180deg,rgba(11,11,11,.55),rgba(8,8,8,.85));
     }
     .hero-card{
-      position:relative;z-index:2;
+      position:relative;z-index:12; /* Above particles */
       max-width:1100px;width:100%;
       padding:2.5rem;
       display:flex;gap:2rem;
@@ -82,7 +105,9 @@
     }
     @media(min-width:768px){.swiper-slide .photo{height:360px;}}
     .swiper-slide .photo img{
-      width:100%;height:100%;object-fit:cover;
+      width:100%;height:100%;
+      /* FIX: Changed 'cover' to 'contain' */
+      object-fit:contain; 
       transition:transform .8s ease;
     }
     .swiper-slide:hover .photo img{transform:scale(1.05);}
@@ -136,6 +161,8 @@
   </style>
 </head>
 <body>
+
+<div id="particles-js"></div>
 
 <header>
   <nav class="px-4 py-2">
@@ -266,6 +293,23 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
+  // --- Particle Generation Script ---
+  const particlesContainer = document.getElementById('particles-js');
+  const numParticles = 30; // Number of particles
+  for (let i = 0; i < numParticles; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    const size = Math.random() * 4 + 2; // Size 2px to 6px
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.left = `${Math.random() * 100}%`;
+    particle.style.bottom = `${Math.random() * 50}%`; // Start near the bottom
+    particle.style.animationDuration = `${Math.random() * 10 + 10}s`; // Duration 10s to 20s
+    particle.style.animationDelay = `-${Math.random() * 10}s`; // Stagger the start time
+    particlesContainer.appendChild(particle);
+  }
+  // --- END Particle Generation Script ---
+
   new Swiper('.mySwiper',{
     slidesPerView:1,spaceBetween:20,loop:true,
     pagination:{el:'.swiper-pagination',clickable:true},
@@ -302,7 +346,7 @@ document.addEventListener('DOMContentLoaded',function(){
             // 1. Build a URLSearchParams object from the form data
             const params = new URLSearchParams();
             for (const [key, value] of formData.entries()) {
-                // Skip empty values (except for 'attending' which has a default)
+                // Skip empty values (unless it's 'attending')
                 if (value !== '' || key === 'attending') {
                     params.append(key, value);
                 }
