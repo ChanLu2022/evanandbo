@@ -97,11 +97,53 @@
             @apply font-display text-3xl md:text-4xl text-center mb-8 md:mb-12 text-primary-dark font-bold uppercase tracking-widest; 
         }
 
-        .hero-section {
-            background-image: var(--bg-image);
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Parallax effect for modern depth */
+        /* Hero section specific styles - UPDATED */
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            overflow: hidden; /* Ensure image doesn't spill */
+        }
+
+        #hero .hero-image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Behind content */
+        }
+
+        #hero .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover the container */
+            object-position: top; /* Crucial: Prioritize the top of the image */
+        }
+
+        #hero .overlay {
+            position: absolute;
+            inset: 0;
+            background-color: #101010; /* Dark overlay */
+            opacity: 0.7; /* Semi-transparent */
+            z-index: 1; /* Between image and content */
+        }
+
+        #hero .content-wrapper {
+            position: relative;
+            z-index: 2; /* Above overlay */
+            max-width: 5xl;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex; /* Use flexbox for vertical centering */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         
         /* Specific centering for the submit button */
@@ -190,9 +232,12 @@
 
     <main class="mt-20">
 
-        <section id="hero" class="hero-section min-h-screen flex items-center justify-center text-center text-white p-8 relative" style="--bg-image: url('Image10.jpg')">
-            <div class="absolute inset-0 bg-primary-dark opacity-70"></div> 
-            <div class="z-10 max-w-5xl mx-auto">
+        <section id="hero">
+            <div class="hero-image-container">
+                <img src="Image10.jpg" alt="Even & Bo Wedding" class="hero-image">
+            </div>
+            <div class="overlay"></div> 
+            <div class="content-wrapper">
                 <p class="font-sans text-xl md:text-2xl mb-6 tracking-wide text-light-white uppercase">The marriage celebration of</p>
                 
                 <h1 class="font-display text-6xl md:text-8xl lg:text-9xl font-extrabold mb-4 leading-none text-accent-blue drop-shadow-lg uppercase">
@@ -354,7 +399,7 @@
                                     <span class="ml-2 text-lg text-primary-dark form-radio-label">Veg</span>
                                 </label>
                             </div>
-                            <div class="flex items-center space-x-2 justify-center">
+                            <div class="flex items-center space-x-2 mt-4">
                                 <input type="checkbox" id="halalOption" name="halal" value="Yes" class="form-checkbox h-5 w-5 text-accent-blue rounded border-accent-blue">
                                 <label for="halalOption" class="text-lg text-primary-dark form-radio-label">Halal Option</label>
                             </div>
