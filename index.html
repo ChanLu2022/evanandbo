@@ -23,8 +23,9 @@
                         'dark-bg': '#101010',
                     },
                     fontFamily: {
-                        'display': ['"Montserrat"', 'sans-serif'], /* Bold for main names/headings */
-                        'sans': ['"Poppins"', 'sans-serif'], /* Clean for body/details */
+                        /* UPDATED: Added "Padauk" as a fallback for Myanmar Unicode */
+                        'display': ['"Montserrat"', '"Padauk"', 'sans-serif'], /* Bold for main names/headings */
+                        'sans': ['"Poppins"', '"Padauk"', 'sans-serif'], /* Clean for body/details */
                     }
                 }
             }
@@ -364,28 +365,29 @@
             <h2 class="section-heading text-primary-dark scroll-reveal">Confirm Your Attendance</h2>
             <div class="max-w-xl mx-auto card scroll-reveal">
                 <form id="rsvpForm" class="space-y-6" action="https://script.google.com/macros/s/NEW_EVEN_BO_SCRIPT_ID/exec" method="POST">
+                    
                     <div class="flex flex-col items-center justify-center">
-                        <label for="fullName" class="block text-lg font-sans font-medium mb-2 text-primary-dark">Full Name</label>
+                        <label for="fullName" class="block text-lg font-sans font-medium mb-2 text-primary-dark">Full Name (နာမည်)</label>
                         <input type="text" id="fullName" name="fullName" required class="form-input text-center">
                     </div>
 
                     <div class="flex flex-col items-center justify-center">
-                        <label for="contactNumber" class="block text-lg font-sans font-medium mb-2 text-primary-dark">Contact Number</label>
+                        <label for="contactNumber" class="block text-lg font-sans font-medium mb-2 text-primary-dark">Contact Number (ဆက်သွယ်ရန် နံပါတ်)</label>
                         <input type="tel" id="contactNumber" name="contactNumber" required class="form-input text-center">
                     </div>
 
                     <div class="flex flex-col items-center justify-center">
-                        <label for="email" class="block text-lg font-sans font-medium mb-2 text-primary-dark">Email Address</label>
+                        <label for="email" class="block text-lg font-sans font-medium mb-2 text-primary-dark">Email Address (အီးမေးလ်)</label>
                         <input type="email" id="email" name="email" required class="form-input text-center">
                     </div>
 
                     <div class="flex flex-col items-center justify-center">
-                        <label for="address" class="block text-lg font-sans font-medium mb-2 text-primary-dark">Address (Township)</label>
+                        <label for="address" class="block text-lg font-sans font-medium mb-2 text-primary-dark">Address (Township) (လိပ်စာ/မြို့နယ်)</label>
                         <textarea id="address" name="address" rows="3" required class="form-input text-center"></textarea>
                     </div>
 
                     <div class="flex flex-col items-center justify-center pt-4">
-                        <label class="block text-lg font-sans font-medium mb-4 text-primary-dark">Will you be attending the wedding?</label>
+                        <label class="block text-lg font-sans font-medium mb-4 text-primary-dark">Will you be attending the wedding? (တက်ရောက်နိုင်ပါသလား)</label>
                         <div class="flex items-center space-x-8">
                             <label class="inline-flex items-center">
                                 <input type="radio" name="attending" value="yes" class="form-radio h-5 w-5 text-accent-blue border-accent-blue" checked>
