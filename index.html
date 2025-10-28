@@ -68,24 +68,34 @@
             transform: translateY(0);
         }
 
-        /* --- GALLERY FILM STRIP CSS --- */
+        /* --- GALLERY FILM STRIP CSS (ADJUSTED FOR ASPECT RATIOS) --- */
         @keyframes scroll-film {
             from { transform: translateX(0); }
-            to { transform: translateX(-50%); } /* Scrolls half the content length */
+            to { transform: translateX(-50%); } 
         }
 
         .film-strip-container {
             overflow: hidden;
             width: 100%;
+            /* Constrains the height for better layout on both desktop and mobile */
+            max-height: 400px; 
         }
+        
+        /* Mobile adjustment for container height */
+        @media (max-width: 640px) {
+            .film-strip-container {
+                max-height: 250px; 
+            }
+        }
+
 
         .film-strip-wrapper {
             display: flex;
-            /* Duplicates are inside HTML to ensure continuous loop. Animation scrolls 50% */
             width: 200%; 
             animation: scroll-film 60s linear infinite; 
             padding: 20px 0;
             cursor: grab;
+            height: 100%; /* Important: Takes max-height of container */
         }
         .film-strip-wrapper:hover {
             animation-play-state: paused;
@@ -94,21 +104,19 @@
 
         .gallery-item {
             flex-shrink: 0;
-            width: 300px; /* Fixed width for film strip look */
-            height: 300px; /* Ensure aspect ratio is handled by img */
+            /* REMOVED FIXED WIDTH/HEIGHT */
+            height: 100%; /* Match wrapper height constraint */
             margin-right: 30px;
             overflow: hidden;
         }
         
-        /* Mobile adjustment for gallery item size */
-        @media (max-width: 640px) {
-            .gallery-item {
-                width: 200px;
-                height: 200px;
-                margin-right: 20px;
-            }
+        .gallery-item img {
+            height: 100%; /* Force image to height constraint */
+            width: auto; /* Allow width to flex based on image ratio */
+            object-fit: cover;
+            /* Ensures non-square images display their full frame within the height limit */
         }
-
+        
         /* --- General Styling (Modern Minimalist) --- */
 
         body {
@@ -224,7 +232,6 @@
             animation: shake 0.4s;
         }
         
-        /* Swiper elements (kept for legacy/re-use if needed, but not used in the new gallery) */
         .swiper-button-next, .swiper-button-prev {
             color: #FFFFFF;
         }
@@ -393,7 +400,7 @@
                     </div>
                     </div>
             </div>
-            </section>
+        </section>
 
         <section id="wedding-details" class="py-20 px-4 md:px-8 text-white text-center">
             <div class="relative z-10 max-w-4xl mx-auto">
@@ -551,8 +558,6 @@
                 });
             };
             
-            // --- Removed Swiper initialization logic ---
-
             // Form Logic (kept the same)
             const rsvpForm = document.getElementById('rsvpForm');
             const attendingRadios = document.querySelectorAll('input[name="attending"]');
