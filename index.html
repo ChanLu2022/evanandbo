@@ -292,12 +292,30 @@ document.addEventListener('DOMContentLoaded',function(){
     e.preventDefault();
     loadingMessage.classList.remove('hidden');
     submitBtn.disabled=true;
-    fetch(form.action,{method:'POST',body:new FormData(form)})
+    
+    // Create FormData object to send to the Apps Script AND collect data for the success page
+    const formData = new FormData(form);
+    
+    fetch(form.action,{method:'POST',body:formData})
       .then(r=>{
-        if(r.ok)window.location.href='success.html';
+        if(r.ok){
+            // 1. Build a URLSearchParams object from the form data
+            const params = new URLSearchParams();
+            for (const [key, value] of formData.entries()) {
+                // Skip empty values (except for 'attending' which has a default)
+                if (value !== '' || key === 'attending') {
+                    params.append(key, value);
+                }
+            }
+            // 2. Redirect to success.html and append the form data as a query string
+            window.location.href = 'success.html?' + params.toString();
+        }
         else throw new Error('fail');
       })
-      .catch(()=>loadingMessage.textContent='Error. Please try again.')
+      .catch(()=>{
+        loadingMessage.textContent='Error. Please try again.';
+        submitBtn.disabled=false; // Re-enable button on error
+      });
   });
 });
 </script>
