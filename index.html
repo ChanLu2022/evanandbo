@@ -39,7 +39,7 @@
         
         /* Update form input styles for a modern, boxier look */
         .form-input {
-            /* Changed border, removed full-rounded corners */
+            /* Changed border color back to accent-blue for highlight */
             @apply p-4 mb-5 border border-accent-blue rounded-lg bg-pure-white text-primary-dark placeholder-primary-dark/70 focus:outline-none focus:ring-2 focus:ring-accent-blue transition duration-300 ease-in-out;
             max-width: 500px; /* Slightly wider inputs */
             width: 100%;
@@ -97,7 +97,7 @@
             @apply font-display text-3xl md:text-4xl text-center mb-8 md:mb-12 text-primary-dark font-bold uppercase tracking-widest; 
         }
 
-        /* Hero section specific styles - UPDATED */
+        /* Hero section specific styles */
         #hero {
             position: relative;
             min-height: 100vh;
@@ -107,7 +107,7 @@
             text-align: center;
             color: white;
             padding: 2rem;
-            overflow: hidden; /* Ensure image doesn't spill */
+            overflow: hidden;
         }
 
         #hero .hero-image-container {
@@ -116,31 +116,31 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0; /* Behind content */
+            z-index: 0;
         }
 
         #hero .hero-image {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Cover the container */
-            object-position: top; /* Crucial: Prioritize the top of the image */
+            object-fit: cover;
+            object-position: top;
         }
 
         #hero .overlay {
             position: absolute;
             inset: 0;
-            background-color: #101010; /* Dark overlay */
-            opacity: 0.7; /* Semi-transparent */
-            z-index: 1; /* Between image and content */
+            background-color: #101010;
+            opacity: 0.7;
+            z-index: 1;
         }
 
         #hero .content-wrapper {
             position: relative;
-            z-index: 2; /* Above overlay */
+            z-index: 2;
             max-width: 5xl;
             margin-left: auto;
             margin-right: auto;
-            display: flex; /* Use flexbox for vertical centering */
+            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -158,8 +158,9 @@
             animation: shake 0.4s;
         }
         
+        /* SWIPER ELEMENTS - Changed color from accent-blue to White */
         .swiper-button-next, .swiper-button-prev {
-            color: #007FFF;
+            color: #FFFFFF; /* Changed to White */
         }
         .swiper-pagination-bullet-active {
             background-color: #007FFF;
@@ -188,12 +189,17 @@
         #wedding-details .card p, #wedding-details .card h3 {
              color: #F9F9F9;
         }
+        /* Detail card headings - Changed color from accent-blue to White */
         #wedding-details .card h3 {
              font-family: 'Montserrat', sans-serif;
              font-weight: 700;
              text-transform: uppercase;
              letter-spacing: 0.1em;
-             color: #007FFF; /* Blue accents on titles */
+             color: #FFFFFF; /* Changed to White */
+        }
+        /* Dress Code accent text - Changed color from accent-blue to White */
+        #wedding-details .card .text-accent-blue {
+             color: #FFFFFF; /* Changed to White */
         }
         
         /* Map button for modern look */
@@ -223,9 +229,9 @@
         <nav class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-center items-center">
             <ul class="flex flex-wrap justify-center md:space-x-10 space-x-6 text-primary-dark text-lg font-display font-semibold uppercase tracking-widest">
                 
-                <li><a href="#gallery" class="hover:text-accent-blue transition duration-300 rounded-lg p-2">Gallery</a></li>
-                <li><a href="#wedding-details" class="hover:text-accent-blue transition duration-300 rounded-lg p-2">Details</a></li>
-                <li><a href="#rsvp" class="hover:text-accent-blue transition duration-300 rounded-lg p-2">RSVP</a></li>
+                <li class="hover:text-accent-blue transition duration-300 rounded-lg p-2"><a href="#gallery">Gallery</a></li>
+                <li class="hover:text-accent-blue transition duration-300 rounded-lg p-2"><a href="#wedding-details">Details</a></li>
+                <li class="hover:text-accent-blue transition duration-300 rounded-lg p-2"><a href="#rsvp">RSVP</a></li>
             </ul>
         </nav>
     </header>
@@ -240,11 +246,11 @@
             <div class="content-wrapper">
                 <p class="font-sans text-xl md:text-2xl mb-6 tracking-wide text-light-white uppercase">The marriage celebration of</p>
                 
-                <h1 class="font-display text-6xl md:text-8xl lg:text-9xl font-extrabold mb-4 leading-none text-accent-blue drop-shadow-lg uppercase">
+                <h1 class="font-display text-6xl md:text-8xl lg:text-9xl font-extrabold mb-4 leading-none text-pure-white drop-shadow-lg uppercase">
                     Even
                 </h1>
                 <p class="font-display text-5xl md:text-6xl tracking-widest font-bold text-light-white mb-4">&</p>
-                <h1 class="font-display text-6xl md:text-8xl lg:text-9xl font-extrabold mt-4 leading-none text-accent-blue drop-shadow-lg uppercase">
+                <h1 class="font-display text-6xl md:text-8xl lg:text-9xl font-extrabold mt-4 leading-none text-pure-white drop-shadow-lg uppercase">
                     Bo
                 </h1>
 
