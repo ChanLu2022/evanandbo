@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evan & Bo - Our Wedding</title>
+    <title>Even & Bo - Our Wedding</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -68,55 +68,6 @@
             transform: translateY(0);
         }
 
-        /* --- GALLERY FILM STRIP CSS (FINAL ADJUSTMENT) --- */
-        @keyframes scroll-film {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); } 
-        }
-
-        .film-strip-container {
-            overflow: hidden;
-            width: 100%;
-            max-height: 400px; /* Constrains the height for desktop */
-        }
-        
-        /* Mobile adjustment for container height */
-        @media (max-width: 640px) {
-            .film-strip-container {
-                max-height: 250px; 
-            }
-        }
-
-        .film-strip-wrapper {
-            display: flex;
-            width: 200%; 
-            animation: scroll-film 60s linear infinite; 
-            padding: 20px 0;
-            cursor: grab;
-            height: 100%; 
-            align-items: center; /* Ensures vertical alignment is centered */
-        }
-        .film-strip-wrapper:hover {
-            animation-play-state: paused;
-            cursor: grabbing;
-        }
-
-        .gallery-item {
-            flex-shrink: 0;
-            height: 100%; 
-            margin-right: 30px;
-            overflow: hidden;
-            background-color: #101010; /* Fill space behind image with black */
-        }
-        
-        .gallery-item img {
-            height: 100%; /* Force image to height constraint */
-            width: auto; /* Allow width to flex based on image ratio */
-            /* CRUCIAL FIX: Use contain to show the entire photo, no crop */
-            object-fit: contain; 
-            transform-origin: center;
-        }
-        
         /* --- General Styling (Modern Minimalist) --- */
 
         body {
@@ -307,14 +258,14 @@
 
         <section id="hero">
             <div class="hero-image-container">
-                <img src="Image13.jpg" alt="Evan & Bo Wedding" class="hero-image">
+                <img src="Image13.jpg" alt="Even & Bo Wedding" class="hero-image">
             </div>
             <div class="overlay"></div> 
             <div class="content-wrapper">
                 <p class="font-sans text-xl md:text-2xl mb-6 tracking-wide text-light-white uppercase animated-text hero-title-1">The marriage celebration of</p>
                 
                 <h1 class="font-display text-6xl md:text-8xl lg:text-9xl font-extrabold mb-4 leading-none text-pure-white drop-shadow-lg uppercase animated-text hero-title-2">
-                    Evan
+                    Even
                 </h1>
                 <p class="font-display text-5xl md:text-6xl tracking-widest font-bold text-light-white mb-4 animated-text hero-title-2">&</p>
                 <h1 class="font-display text-6xl md:text-8xl lg:text-9xl font-extrabold mt-4 leading-none text-pure-white drop-shadow-lg uppercase animated-text hero-title-3">
@@ -333,72 +284,46 @@
         </section>
 
         
-        <section id="gallery" class="py-20 px-0 md:px-0" style="background-color: #101010;">
+        <section id="gallery" class="py-20 px-4 md:px-8" style="background-color: #101010;">
             <h2 class="section-heading text-pure-white scroll-reveal">Our Moments</h2>
-            <div class="film-strip-container">
-                <div class="film-strip-wrapper">
-                    <div class="gallery-item">
-                        <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray w-full h-full transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
-                            <img src="Image4.jpg" alt="Couple embracing" class="w-full h-full">
+            <div class="max-w-7xl mx-auto">
+                <div class="swiper mySwiper scroll-reveal">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray aspect-w-4 aspect-h-3 transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
+                                <img src="Image4.jpg" alt="Couple embracing on a mountain top" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray aspect-w-4 aspect-h-3 transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
+                                <img src="Image11.jpg" alt="Couple traveling in a scenic landscape" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray aspect-w-4 aspect-h-3 transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
+                                <img src="Image2.jpg" alt="Candid shot of a couple laughing" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray aspect-w-4 aspect-h-3 transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
+                                <img src="Image5.jpg" alt="Couple at a elegant dinner" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray aspect-w-4 aspect-h-3 transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
+                                <img src="Image8.jpg" alt="Couple celebrating with champagne" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray aspect-w-4 aspect-h-3 transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
+                                <img src="Image7.jpg" alt="Couple looking into each other's eyes" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
+                            </div>
                         </div>
                     </div>
-                    <div class="gallery-item">
-                        <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray w-full h-full transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
-                            <img src="Image11.jpg" alt="Couple traveling" class="w-full h-full">
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray w-full h-full transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
-                            <img src="Image2.jpg" alt="Candid shot" class="w-full h-full">
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray w-full h-full transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
-                            <img src="Image5.jpg" alt="Elegant dinner" class="w-full h-full">
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray w-full h-full transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
-                            <img src="Image8.jpg" alt="Celebrating" class="w-full h-full">
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray w-full h-full transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
-                            <img src="Image7.jpg" alt="Looking into eyes" class="w-full h-full">
-                        </div>
-                    </div>
-                    
-                    <div class="gallery-item">
-                        <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray w-full h-full transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
-                            <img src="Image4.jpg" alt="Couple embracing" class="w-full h-full">
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray w-full h-full transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
-                            <img src="Image11.jpg" alt="Couple traveling" class="w-full h-full">
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray w-full h-full transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
-                            <img src="Image2.jpg" alt="Candid shot" class="w-full h-full">
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray w-full h-full transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
-                            <img src="Image5.jpg" alt="Elegant dinner" class="w-full h-full">
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray w-full h-full transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
-                            <img src="Image8.jpg" alt="Celebrating" class="w-full h-full">
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray w-full h-full transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
-                            <img src="Image7.jpg" alt="Looking into eyes" class="w-full h-full">
-                        </div>
-                    </div>
-                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
             </div>
         </section>
 
@@ -531,20 +456,23 @@
     </main>
 
     <footer class="py-8 text-center text-sm font-sans">
-        <p class="font-bold">EVAN & BO</p>
+        <p class="font-bold">EVEN & BO</p>
         <p>© 2025. All Rights Reserved.</p>
         <p class="mt-2 text-sm text-soft-gray">A Modern Celebration</p>
     </footer>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Function to check if an element is in viewport
             const isInViewport = (element) => {
                 const rect = element.getBoundingClientRect();
-                // Check if element is at least partially in the viewport vertically
                 return (
                     rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
-                    rect.bottom > 0
+                    rect.bottom > 0 &&
+                    rect.left < (window.innerWidth || document.documentElement.clientWidth) &&
+                    rect.right > 0
                 );
             };
 
@@ -552,12 +480,38 @@
             const handleScrollReveal = () => {
                 const elements = document.querySelectorAll('.scroll-reveal');
                 elements.forEach(el => {
+                    // Check if element is 75% visible in viewport
                     if (isInViewport(el)) {
                         el.classList.add('visible');
                     }
                 });
             };
-            
+
+            // Initialize Swiper
+            const swiper = new Swiper(".mySwiper", {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                loop: true,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                },
+            });
+
             // Form Logic (kept the same)
             const rsvpForm = document.getElementById('rsvpForm');
             const attendingRadios = document.querySelectorAll('input[name="attending"]');
