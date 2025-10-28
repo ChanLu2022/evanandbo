@@ -3,48 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Even & Bo - Our Wedding</title>
+    <title>Even & Bo - Wedding Romance</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <style>
-        /* Custom Tailwind Configuration - Modern Minimalist Theme */
+        /* Custom Tailwind Configuration - Inspired Elegant Theme */
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         'primary-dark': '#101010', /* Near Black */
-                        'accent-blue': '#007FFF', /* Azure Blue - vibrant and modern */
-                        'light-white': '#F9F9F9', /* Off-White/Light Gray */
+                        'accent-soft': '#8B6443', /* Deep Sepia / Muted Gold Accent */
+                        'light-bg': '#FFF4EF', /* Soft off-white/beige background for light sections */
                         'pure-white': '#FFFFFF',
                         'soft-gray': '#E0E0E0',
-                        'form-border': '#007FFF',
+                        'form-border': '#8B6443',
                         'form-bg-light': '#FFFFFF',
                         'dark-bg': '#101010',
                     },
                     fontFamily: {
-                        'display': ['"Montserrat"', 'sans-serif'], /* Bold for main names/headings */
-                        'sans': ['"Poppins"', 'sans-serif'], /* Clean for body/details */
+                        'display': ['"EB Garamond"', 'serif'], /* Elegant for main names/headings */
+                        'sans': ['"Prompt"', 'sans-serif'], /* Clean for body/details */
                     }
                 }
             }
         }
+        
+        /* Utility for elegant italics, inspired by the source template */
+        .style-italic {
+            font-style: italic;
+            font-weight: 500; 
+        }
 
-        /* Additional custom styles for a modern look */
+        /* Additional custom styles for an elegant look */
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Prompt', sans-serif;
             color: #101010;
             background-color: #F9F9F9; /* Light gray body background */
         }
         
-        /* Update form input styles for a modern, boxier look */
+        /* Update form input styles */
         .form-input {
-            /* Changed border color back to accent-blue for highlight */
-            @apply p-4 mb-5 border border-accent-blue rounded-lg bg-pure-white text-primary-dark placeholder-primary-dark/70 focus:outline-none focus:ring-2 focus:ring-accent-blue transition duration-300 ease-in-out;
-            max-width: 500px; /* Slightly wider inputs */
+            @apply p-4 mb-5 border border-accent-soft rounded-lg bg-pure-white text-primary-dark placeholder-primary-dark/70 focus:outline-none focus:ring-2 focus:ring-accent-soft transition duration-300 ease-in-out;
+            max-width: 500px;
             width: 100%;
-            font-family: 'Poppins', sans-serif;
-            text-transform: capitalize; /* Cleaner text input */
+            font-family: 'Prompt', sans-serif;
+            text-transform: capitalize; 
         }
 
         /* Mobile-specific adjustments for form input width */
@@ -54,47 +59,47 @@
             }
         }
 
-        /* Style the labels to be more direct */
+        /* Style the labels to be elegant */
         #rsvpForm label {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Prompt', sans-serif;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 500;
             color: #101010;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
             text-align: center;
             text-transform: uppercase;
         }
         /* Improve the radio button labels */
         .form-radio-label {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Prompt', sans-serif;
             font-size: 1rem;
             color: #101010;
         }
         /* Remove the 'card' look in RSVP for a minimalist feel */
         #rsvp .card {
-            background-color: transparent; /* Full transparency */
+            background-color: transparent; 
             box-shadow: none;
             border: none;
             padding: 0;
             border-radius: 0;
         }
-        /* Style the submit button for a more refined appearance */
+        /* Style the submit button for a sepia accent */
         .btn-submit {
-            /* RSVP Button: Changed background to Black */
-            @apply py-4 px-12 rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 hover:bg-primary-dark hover:ring-2 hover:ring-accent-blue;
-            background-color: #101010; /* Near Black */
+            /* RSVP Button: Sepia background, Hover Black with Gold ring */
+            @apply py-4 px-12 rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 hover:bg-primary-dark hover:ring-2 hover:ring-accent-soft;
+            background-color: #8B6443; /* Deep Sepia */
             color: #FFFFFF;
-            border: 2px solid #FFFFFF; /* Added thin white border for subtle depth */
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: 0.15em;
+            border: 2px solid #FFFFFF; 
+            font-family: 'EB Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
         }
         /* General section heading style */
         .section-heading {
-            /* Bold, uppercase, minimalist style */
-            @apply font-display text-3xl md:text-4xl text-center mb-8 md:mb-12 text-primary-dark font-bold uppercase tracking-widest; 
+            /* Elegant title styling */
+            @apply font-display text-4xl md:text-5xl text-center mb-8 md:mb-12 text-primary-dark font-normal tracking-wide; 
         }
 
         /* Hero section specific styles */
@@ -130,7 +135,7 @@
             position: absolute;
             inset: 0;
             background-color: #101010;
-            opacity: 0.7;
+            opacity: 0.75; /* Slightly darker overlay for elegance */
             z-index: 1;
         }
 
@@ -145,71 +150,47 @@
             justify-content: center;
             align-items: center;
         }
-        
-        /* Specific centering for the submit button */
-        .submit-container {
-            margin: 0 auto;
-            max-width: 500px;
-            text-align: center;
-            padding-top: 2rem;
-        }
-        .is-invalid {
-            border-color: #dc2626;
-            animation: shake 0.4s;
-        }
-        
-        /* SWIPER ELEMENTS - Changed color to White */
+
+        /* Swiper elements - Elegant white arrows and sepia pagination */
         .swiper-button-next, .swiper-button-prev {
-            color: #FFFFFF; /* White */
+            color: #FFFFFF; 
         }
         .swiper-pagination-bullet-active {
-            background-color: #007FFF;
+            background-color: #8B6443;
         }
 
-        @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            50% { transform: translateX(5px); }
-            75% { transform: translateX(-5px); }
-            100% { transform: translateX(0); }
-        }
-
-        /* Detail section styling */
+        /* Detail section styling - Dark background, elegant borders */
         #wedding-details {
-            background-color: #101010; /* Dark background for this section */
+            background-color: #101010; 
         }
         #wedding-details .section-heading {
             color: #FFFFFF;
         }
         #wedding-details .card {
-            background-color: rgba(255, 255, 255, 0.08); /* Slight transparent white box */
-            /* Event Detail Borders: Changed to White */
+            background-color: rgba(255, 255, 255, 0.08); 
             border-top: 2px solid #FFFFFF; 
-            border-radius: 8px; /* Slightly rounded corners */
+            border-radius: 8px;
+            box-shadow: none; /* Removed shadow for flat dark theme look */
         }
         #wedding-details .card p, #wedding-details .card h3 {
              color: #F9F9F9;
         }
-        /* Detail card headings - White text on Dark background */
         #wedding-details .card h3 {
-             font-family: 'Montserrat', sans-serif;
-             font-weight: 700;
-             text-transform: uppercase;
-             letter-spacing: 0.1em;
-             color: #FFFFFF; /* White */
-        }
-        /* Dress Code accent text - White text on Dark background */
-        #wedding-details .card .text-accent-blue {
-             color: #FFFFFF; /* White */
+             font-family: 'EB Garamond', serif;
+             font-weight: 600;
+             text-transform: none; /* Reverted uppercase */
+             letter-spacing: 0.05em;
+             color: #FFFFFF; 
         }
         
-        /* Map button for modern look */
+        /* Map button - Sepia background, elegant font */
         .map-btn {
-            @apply inline-block py-3 px-6 rounded-lg font-display text-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 uppercase font-bold tracking-wider;
-            background-color: #007FFF;
+            @apply inline-block py-3 px-6 rounded-lg font-display text-xl shadow-md transition duration-300 ease-in-out transform hover:scale-105;
+            background-color: #8B6443; /* Sepia */
             color: #FFFFFF;
             border: none;
             text-decoration: none;
+            font-weight: 500;
         }
          /* Footer style for darkness */
         footer {
@@ -220,7 +201,7 @@
 </head>
 <body>
 
-    <button id="scrollToTopBtn" class="fixed bottom-8 right-8 bg-accent-blue text-white p-4 rounded-lg shadow-lg transition-opacity duration-300 opacity-0 z-50 hover:scale-110">
+    <button id="scrollToTopBtn" class="fixed bottom-8 right-8 bg-accent-soft text-white p-4 rounded-lg shadow-lg transition-opacity duration-300 opacity-0 z-50 hover:scale-110">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
         </svg>
@@ -228,11 +209,11 @@
 
     <header class="shadow-md fixed w-full z-50 top-0" style="background-color: #FFFFFF;">
         <nav class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-center items-center">
-            <ul class="flex flex-wrap justify-center md:space-x-10 space-x-6 text-primary-dark text-lg font-display font-semibold uppercase tracking-widest">
+            <ul class="flex flex-wrap justify-center md:space-x-10 space-x-6 text-primary-dark text-lg font-sans font-medium tracking-wider">
                 
-                <li class="hover:text-accent-blue transition duration-300 rounded-lg p-2"><a href="#gallery">Gallery</a></li>
-                <li class="hover:text-accent-blue transition duration-300 rounded-lg p-2"><a href="#wedding-details">Details</a></li>
-                <li class="hover:text-accent-blue transition duration-300 rounded-lg p-2"><a href="#rsvp">RSVP</a></li>
+                <li class="hover:text-accent-soft transition duration-300 rounded-lg p-2"><a href="#gallery">Gallery</a></li>
+                <li class="hover:text-accent-soft transition duration-300 rounded-lg p-2"><a href="#wedding-details">Details</a></li>
+                <li class="hover:text-accent-soft transition duration-300 rounded-lg p-2"><a href="#rsvp">RSVP</a></li>
             </ul>
         </nav>
     </header>
@@ -245,18 +226,18 @@
             </div>
             <div class="overlay"></div> 
             <div class="content-wrapper">
-                <p class="font-sans text-xl md:text-2xl mb-6 tracking-wide text-light-white uppercase">The marriage celebration of</p>
+                <p class="font-sans text-xl md:text-2xl mb-6 tracking-wide text-light-white">The marriage celebration of</p>
                 
-                <h1 class="font-display text-6xl md:text-8xl lg:text-9xl font-extrabold mb-4 leading-none text-pure-white drop-shadow-lg uppercase">
+                <h1 class="font-display text-7xl md:text-8xl lg:text-9xl font-normal mb-4 leading-none text-pure-white drop-shadow-lg">
                     Even
                 </h1>
-                <p class="font-display text-5xl md:text-6xl tracking-widest font-bold text-light-white mb-4">&</p>
-                <h1 class="font-display text-6xl md:text-8xl lg:text-9xl font-extrabold mt-4 leading-none text-pure-white drop-shadow-lg uppercase">
-                    Bo
+                <p class="font-display text-5xl md:text-6xl tracking-widest font-normal text-light-white mb-4">&</p>
+                <h1 class="font-display text-7xl md:text-8xl lg:text-9xl font-normal mt-4 leading-none text-pure-white drop-shadow-lg">
+                    Bo <span class="style-italic">Wedding Romance</span>
                 </h1>
 
                 <div class="mt-10 p-6 bg-primary-dark/50 inline-block rounded-lg backdrop-blur-sm">
-                    <p class="font-display text-2xl md:text-4xl tracking-widest font-bold text-light-white uppercase">
+                    <p class="font-display text-3xl md:text-5xl tracking-widest font-normal text-light-white">
                         23.11.2025
                     </p>
                     <p class="font-sans text-xl md:text-2xl mt-3 text-light-white tracking-wider">
@@ -268,7 +249,7 @@
 
         
         <section id="gallery" class="py-20 px-4 md:px-8" style="background-color: #101010;">
-            <h2 class="section-heading text-pure-white">Our Moments</h2>
+            <h2 class="section-heading text-pure-white">Our Favorite <span class="style-italic">Moments</span></h2>
             <div class="max-w-7xl mx-auto">
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
@@ -312,11 +293,11 @@
 
         <section id="wedding-details" class="py-20 px-4 md:px-8 text-white text-center">
             <div class="relative z-10 max-w-4xl mx-auto">
-                <h2 class="section-heading">Event Information</h2>
+                <h2 class="section-heading">Event <span class="style-italic">Information</span></h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     
                     <div class="card p-8">
-                        <h3 class="font-display text-xl font-bold mb-4">Venue</h3>
+                        <h3 class="font-display text-2xl font-bold mb-4">Venue</h3>
                         <p class="font-sans text-lg font-bold mb-2">Novotel Hotel</p>
                         <p class="font-sans text-md mb-4">(Yangon Ballroom)</p>
                         <p class="font-sans text-md mb-2">459 Pyay Road, Kamayut Township,</p>
@@ -328,12 +309,12 @@
                     </div>
 
                     <div class="card p-8">
-                        <h3 class="font-display text-xl font-bold mb-4">Timing & Dress Code</h3>
+                        <h3 class="font-display text-2xl font-bold mb-4">Timing & Dress Code</h3>
                         <p class="font-sans text-lg font-bold mb-2">Sunday, November 23, 2025</p>
                         <p class="font-sans text-base mb-2">10:30 AM - Doors Open</p>
                         <p class="font-sans text-base mb-4">11:00 AM - Ceremony & Lunch Reception (Concludes 1:30 PM)</p>
                         
-                        <p class="font-sans text-lg font-bold mt-6 mb-2 text-accent-blue uppercase">Dress Code</p>
+                        <p class="font-sans text-lg font-bold mt-6 mb-2 text-accent-soft">Dress Code</p>
                         <p class="font-sans text-md">**Formal Attire**</p>
                         <p class="font-sans text-sm mt-1">(Theme Colors: **Black, White, or Water Blue**)</p>
                         
@@ -344,7 +325,7 @@
         </section>
 
         <section id="rsvp" class="py-20 px-4 md:px-8 text-primary-dark" style="background-color: #F9F9F9;">
-            <h2 class="section-heading text-primary-dark">Confirm Your Attendance</h2>
+            <h2 class="section-heading text-primary-dark">Confirm <span class="style-italic">Your Attendance</span></h2>
             <div class="max-w-xl mx-auto card">
                 <form id="rsvpForm" class="space-y-6" action="https://script.google.com/macros/s/NEW_EVEN_BO_SCRIPT_ID/exec" method="POST">
                     <div class="flex flex-col items-center justify-center">
@@ -371,11 +352,11 @@
                         <label class="block text-lg font-sans font-medium mb-4 text-primary-dark">Will you be attending the wedding?</label>
                         <div class="flex items-center space-x-8">
                             <label class="inline-flex items-center">
-                                <input type="radio" name="attending" value="yes" class="form-radio h-5 w-5 text-accent-blue border-accent-blue" checked>
+                                <input type="radio" name="attending" value="yes" class="form-radio h-5 w-5 text-accent-soft border-accent-soft" checked>
                                 <span class="ml-2 text-lg text-primary-dark form-radio-label">YES</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="radio" name="attending" value="no" class="form-radio h-5 w-5 text-accent-blue border-accent-blue">
+                                <input type="radio" name="attending" value="no" class="form-radio h-5 w-5 text-accent-soft border-accent-soft">
                                 <span class="ml-2 text-lg text-primary-dark form-radio-label">NO</span>
                             </label>
                         </div>
@@ -398,16 +379,16 @@
                             <label class="block text-lg font-sans font-medium mb-4 text-primary-dark">Menu Preference (Main Guest)</label>
                             <div class="flex items-center space-x-8 mb-4">
                                 <label class="inline-flex items-center">
-                                    <input type="radio" name="menuPreference" value="non-vegetarian" class="form-radio h-5 w-5 text-accent-blue border-accent-blue" checked>
+                                    <input type="radio" name="menuPreference" value="non-vegetarian" class="form-radio h-5 w-5 text-accent-soft border-accent-soft" checked>
                                     <span class="ml-2 text-lg text-primary-dark form-radio-label">Non-Veg</span>
                                 </label>
                                 <label class="inline-flex items-center">
-                                    <input type="radio" name="menuPreference" value="vegetarian" class="form-radio h-5 w-5 text-accent-blue border-accent-blue">
+                                    <input type="radio" name="menuPreference" value="vegetarian" class="form-radio h-5 w-5 text-accent-soft border-accent-soft">
                                     <span class="ml-2 text-lg text-primary-dark form-radio-label">Veg</span>
                                 </label>
                             </div>
                             <div class="flex items-center space-x-2 mt-4">
-                                <input type="checkbox" id="halalOption" name="halal" value="Yes" class="form-checkbox h-5 w-5 text-accent-blue rounded border-accent-blue">
+                                <input type="checkbox" id="halalOption" name="halal" value="Yes" class="form-checkbox h-5 w-5 text-accent-soft rounded border-accent-soft">
                                 <label for="halalOption" class="text-lg text-primary-dark form-radio-label">Halal Option</label>
                             </div>
                         </div>
@@ -527,16 +508,16 @@
                                 <label class="block text-lg font-sans font-medium mb-4 text-primary-dark">Menu Preference (Guest ${i})</label>
                                 <div class="flex items-center space-x-8">
                                     <label class="inline-flex items-center">
-                                        <input type="radio" name="menuPreferenceGuest${i}" value="non-vegetarian" class="form-radio h-5 w-5 text-accent-blue border-accent-blue" checked>
+                                        <input type="radio" name="menuPreferenceGuest${i}" value="non-vegetarian" class="form-radio h-5 w-5 text-accent-soft border-accent-soft" checked>
                                         <span class="ml-2 text-lg text-primary-dark form-radio-label">Non-Veg</span>
                                     </label>
                                     <label class="inline-flex items-center">
-                                        <input type="radio" name="menuPreferenceGuest${i}" value="vegetarian" class="form-radio h-5 w-5 text-accent-blue border-accent-blue">
+                                        <input type="radio" name="menuPreferenceGuest${i}" value="vegetarian" class="form-radio h-5 w-5 text-accent-soft border-accent-soft">
                                         <span class="ml-2 text-lg text-primary-dark form-radio-label">Veg</span>
                                     </label>
                                 </div>
                                 <div class="flex items-center space-x-2 mt-4">
-                                    <input type="checkbox" id="halalOptionGuest${i}" name="halalGuest${i}" value="Yes" class="form-checkbox h-5 w-5 text-accent-blue rounded border-accent-blue">
+                                    <input type="checkbox" id="halalOptionGuest${i}" name="halalGuest${i}" value="Yes" class="form-checkbox h-5 w-5 text-accent-soft rounded border-accent-soft">
                                     <label for="halalOptionGuest${i}" class="text-lg text-primary-dark form-radio-label">Halal Option</label>
                                 </div>
                             `;
