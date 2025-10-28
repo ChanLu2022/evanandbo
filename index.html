@@ -401,7 +401,7 @@
                     </div>
 
                     <div id="guestCountContainer" class="flex flex-col items-center justify-center pt-4">
-                        <label for="guestCount" class="block text-lg font-sans font-medium mb-2 text-primary-dark">Number of Guests (including yourself)</label>
+                        <label for="guestCount" class="block text-lg font-sans font-medium mb-2 text-primary-dark">Number of Guests (including yourself) (သင်အပါအဝင်တက်ရောက်မည့်လူအရေအတွက်)</label>
                         <select id="guestCount" name="guestCount" class="form-input text-center">
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -514,7 +514,7 @@
                 },
             });
 
-            // Form Logic (kept the same)
+            // Form Logic (modified to include Burmese in dynamically generated labels)
             const rsvpForm = document.getElementById('rsvpForm');
             const attendingRadios = document.querySelectorAll('input[name="attending"]');
             const guestCountSelect = document.getElementById('guestCount');
@@ -554,10 +554,12 @@
                     if (guestCount > 1) {
                         guestNamesContainer.classList.remove('hidden');
                         for (let i = 2; i <= guestCount; i++) {
+                            const burmeseName = (i === 2) ? 'ဧည့်သည် ၂ နာမည်' : 'ဧည့်သည် ၃ နာမည်';
+                            
                             const guestNameDiv = document.createElement('div');
                             guestNameDiv.className = 'flex flex-col items-center justify-center';
                             guestNameDiv.innerHTML = `
-                                <label for="guestName${i}" class="block text-lg font-sans font-medium mb-2 text-primary-dark">Guest ${i} Full Name</label>
+                                <label for="guestName${i}" class="block text-lg font-sans font-medium mb-2 text-primary-dark">Guest ${i} Full Name (${burmeseName})</label>
                                 <input type="text" id="guestName${i}" name="guestName${i}" required class="form-input text-center">
                             `;
                             guestNamesContainer.appendChild(guestNameDiv);
