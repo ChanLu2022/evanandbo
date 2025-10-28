@@ -30,31 +30,66 @@
             }
         }
 
-        /* Additional custom styles for a modern look */
+        /* --- Custom CSS for Visual Effects --- */
+        
+        /* Keyframe for a smooth, subtle upward fade-in effect */
+        @keyframes fadeInMove {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Text Animation - Applied via Tailwind classes */
+        .animated-text {
+            animation: fadeInMove 0.8s ease-out forwards;
+        }
+        .hero-title-1 { animation-delay: 0.1s; }
+        .hero-title-2 { animation-delay: 0.3s; }
+        .hero-title-3 { animation-delay: 0.5s; }
+        .hero-details { animation-delay: 0.7s; }
+
+        /* Keyframe for a subtle pulse on the date box */
+        @keyframes pulseShadow {
+            0% { box-shadow: 0 0 0 0 rgba(0, 127, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 127, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 127, 255, 0); }
+        }
+        .date-pulse {
+             animation: pulseShadow 2s infinite;
+        }
+        
+        /* General scroll-reveal effect for non-hero sections */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- General Styling (Modern Minimalist) --- */
+
         body {
             font-family: 'Poppins', sans-serif;
             color: #101010;
-            background-color: #F9F9F9; /* Light gray body background */
+            background-color: #F9F9F9;
         }
         
-        /* Update form input styles for a modern, boxier look */
         .form-input {
-            /* Changed border color back to accent-blue for highlight */
             @apply p-4 mb-5 border border-accent-blue rounded-lg bg-pure-white text-primary-dark placeholder-primary-dark/70 focus:outline-none focus:ring-2 focus:ring-accent-blue transition duration-300 ease-in-out;
-            max-width: 500px; /* Slightly wider inputs */
+            max-width: 500px;
             width: 100%;
             font-family: 'Poppins', sans-serif;
-            text-transform: capitalize; /* Cleaner text input */
+            text-transform: capitalize;
         }
 
-        /* Mobile-specific adjustments for form input width */
         @media (max-width: 640px) {
             .form-input {
                 max-width: 90%; 
             }
         }
 
-        /* Style the labels to be more direct */
         #rsvpForm label {
             font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
@@ -64,40 +99,35 @@
             text-align: center;
             text-transform: uppercase;
         }
-        /* Improve the radio button labels */
         .form-radio-label {
             font-family: 'Poppins', sans-serif;
             font-size: 1rem;
             color: #101010;
         }
-        /* Remove the 'card' look in RSVP for a minimalist feel */
         #rsvp .card {
-            background-color: transparent; /* Full transparency */
+            background-color: transparent;
             box-shadow: none;
             border: none;
             padding: 0;
             border-radius: 0;
         }
-        /* Style the submit button for a more refined appearance */
         .btn-submit {
-            /* RSVP Button: Changed background to Black */
+            /* Black button, White text, Blue hover/ring */
             @apply py-4 px-12 rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 hover:bg-primary-dark hover:ring-2 hover:ring-accent-blue;
-            background-color: #101010; /* Near Black */
+            background-color: #101010;
             color: #FFFFFF;
-            border: 2px solid #FFFFFF; /* Added thin white border for subtle depth */
+            border: 2px solid #FFFFFF;
             font-family: 'Montserrat', sans-serif;
             font-size: 1.25rem;
             font-weight: 700;
             letter-spacing: 0.15em;
             text-transform: uppercase;
         }
-        /* General section heading style */
         .section-heading {
-            /* Bold, uppercase, minimalist style */
             @apply font-display text-3xl md:text-4xl text-center mb-8 md:mb-12 text-primary-dark font-bold uppercase tracking-widest; 
         }
 
-        /* Hero section specific styles */
+        /* Hero section styles */
         #hero {
             position: relative;
             min-height: 100vh;
@@ -109,7 +139,6 @@
             padding: 2rem;
             overflow: hidden;
         }
-
         #hero .hero-image-container {
             position: absolute;
             top: 0;
@@ -118,14 +147,12 @@
             height: 100%;
             z-index: 0;
         }
-
         #hero .hero-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: top;
         }
-
         #hero .overlay {
             position: absolute;
             inset: 0;
@@ -133,7 +160,6 @@
             opacity: 0.7;
             z-index: 1;
         }
-
         #hero .content-wrapper {
             position: relative;
             z-index: 2;
@@ -146,7 +172,6 @@
             align-items: center;
         }
         
-        /* Specific centering for the submit button */
         .submit-container {
             margin: 0 auto;
             max-width: 500px;
@@ -158,9 +183,8 @@
             animation: shake 0.4s;
         }
         
-        /* SWIPER ELEMENTS - Changed color to White */
         .swiper-button-next, .swiper-button-prev {
-            color: #FFFFFF; /* White */
+            color: #FFFFFF;
         }
         .swiper-pagination-bullet-active {
             background-color: #007FFF;
@@ -174,44 +198,37 @@
             100% { transform: translateX(0); }
         }
 
-        /* Detail section styling */
         #wedding-details {
-            background-color: #101010; /* Dark background for this section */
+            background-color: #101010;
         }
         #wedding-details .section-heading {
             color: #FFFFFF;
         }
         #wedding-details .card {
-            background-color: rgba(255, 255, 255, 0.08); /* Slight transparent white box */
-            /* Event Detail Borders: Changed to White */
+            background-color: rgba(255, 255, 255, 0.08);
             border-top: 2px solid #FFFFFF; 
-            border-radius: 8px; /* Slightly rounded corners */
+            border-radius: 8px;
         }
         #wedding-details .card p, #wedding-details .card h3 {
              color: #F9F9F9;
         }
-        /* Detail card headings - White text on Dark background */
         #wedding-details .card h3 {
              font-family: 'Montserrat', sans-serif;
              font-weight: 700;
              text-transform: uppercase;
              letter-spacing: 0.1em;
-             color: #FFFFFF; /* White */
+             color: #FFFFFF;
         }
-        /* Dress Code accent text - White text on Dark background */
         #wedding-details .card .text-accent-blue {
-             color: #FFFFFF; /* White */
+             color: #FFFFFF;
         }
         
-        /* Map button for modern look */
+        /* Map button - Black button, Blue ring hover */
         .map-btn {
-            @apply inline-block py-3 px-6 rounded-lg font-display text-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 uppercase font-bold tracking-wider;
-            background-color: #007FFF;
-            color: #FFFFFF;
-            border: none;
+            @apply inline-block py-3 px-6 rounded-lg font-display text-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 bg-primary-dark text-pure-white border-2 border-primary-dark hover:border-accent-blue uppercase font-bold tracking-wider;
             text-decoration: none;
         }
-         /* Footer style for darkness */
+         /* Footer style */
         footer {
             background-color: #101010;
             color: #F9F9F9;
@@ -245,17 +262,17 @@
             </div>
             <div class="overlay"></div> 
             <div class="content-wrapper">
-                <p class="font-sans text-xl md:text-2xl mb-6 tracking-wide text-light-white uppercase">The marriage celebration of</p>
+                <p class="font-sans text-xl md:text-2xl mb-6 tracking-wide text-light-white uppercase animated-text hero-title-1">The marriage celebration of</p>
                 
-                <h1 class="font-display text-6xl md:text-8xl lg:text-9xl font-extrabold mb-4 leading-none text-pure-white drop-shadow-lg uppercase">
+                <h1 class="font-display text-6xl md:text-8xl lg:text-9xl font-extrabold mb-4 leading-none text-pure-white drop-shadow-lg uppercase animated-text hero-title-2">
                     Even
                 </h1>
-                <p class="font-display text-5xl md:text-6xl tracking-widest font-bold text-light-white mb-4">&</p>
-                <h1 class="font-display text-6xl md:text-8xl lg:text-9xl font-extrabold mt-4 leading-none text-pure-white drop-shadow-lg uppercase">
+                <p class="font-display text-5xl md:text-6xl tracking-widest font-bold text-light-white mb-4 animated-text hero-title-2">&</p>
+                <h1 class="font-display text-6xl md:text-8xl lg:text-9xl font-extrabold mt-4 leading-none text-pure-white drop-shadow-lg uppercase animated-text hero-title-3">
                     Bo
                 </h1>
 
-                <div class="mt-10 p-6 bg-primary-dark/50 inline-block rounded-lg backdrop-blur-sm">
+                <div class="mt-10 p-6 bg-primary-dark/50 inline-block rounded-lg backdrop-blur-sm date-pulse animated-text hero-details">
                     <p class="font-display text-2xl md:text-4xl tracking-widest font-bold text-light-white uppercase">
                         23.11.2025
                     </p>
@@ -268,37 +285,37 @@
 
         
         <section id="gallery" class="py-20 px-4 md:px-8" style="background-color: #101010;">
-            <h2 class="section-heading text-pure-white">Our Moments</h2>
+            <h2 class="section-heading text-pure-white scroll-reveal">Our Moments</h2>
             <div class="max-w-7xl mx-auto">
-                <div class="swiper mySwiper">
+                <div class="swiper mySwiper scroll-reveal">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray aspect-w-4 aspect-h-3">
+                            <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray aspect-w-4 aspect-h-3 transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
                                 <img src="Image4.jpg" alt="Couple embracing on a mountain top" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray aspect-w-4 aspect-h-3">
+                            <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray aspect-w-4 aspect-h-3 transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
                                 <img src="Image11.jpg" alt="Couple traveling in a scenic landscape" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray aspect-w-4 aspect-h-3">
+                            <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray aspect-w-4 aspect-h-3 transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
                                 <img src="Image2.jpg" alt="Candid shot of a couple laughing" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray aspect-w-4 aspect-h-3">
+                            <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray aspect-w-4 aspect-h-3 transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
                                 <img src="Image5.jpg" alt="Couple at a elegant dinner" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray aspect-w-4 aspect-h-3">
+                            <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray aspect-w-4 aspect-h-3 transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
                                 <img src="Image8.jpg" alt="Couple celebrating with champagne" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray aspect-w-4 aspect-h-3">
+                            <div class="relative group rounded-lg overflow-hidden shadow-2xl border border-soft-gray aspect-w-4 aspect-h-3 transform transition duration-500 hover:shadow-accent-blue/50 hover:scale-[1.02]">
                                 <img src="Image7.jpg" alt="Couple looking into each other's eyes" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
                             </div>
                         </div>
@@ -312,10 +329,10 @@
 
         <section id="wedding-details" class="py-20 px-4 md:px-8 text-white text-center">
             <div class="relative z-10 max-w-4xl mx-auto">
-                <h2 class="section-heading">Event Information</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <h2 class="section-heading scroll-reveal">Event Information</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 scroll-reveal">
                     
-                    <div class="card p-8">
+                    <div class="card p-8 transition duration-500 hover:border-accent-blue hover:shadow-lg">
                         <h3 class="font-display text-xl font-bold mb-4">Venue</h3>
                         <p class="font-sans text-lg font-bold mb-2">Novotel Hotel</p>
                         <p class="font-sans text-md mb-4">(Yangon Ballroom)</p>
@@ -327,7 +344,7 @@
                         </div>
                     </div>
 
-                    <div class="card p-8">
+                    <div class="card p-8 transition duration-500 hover:border-accent-blue hover:shadow-lg">
                         <h3 class="font-display text-xl font-bold mb-4">Timing & Dress Code</h3>
                         <p class="font-sans text-lg font-bold mb-2">Sunday, November 23, 2025</p>
                         <p class="font-sans text-base mb-2">10:30 AM - Doors Open</p>
@@ -344,8 +361,8 @@
         </section>
 
         <section id="rsvp" class="py-20 px-4 md:px-8 text-primary-dark" style="background-color: #F9F9F9;">
-            <h2 class="section-heading text-primary-dark">Confirm Your Attendance</h2>
-            <div class="max-w-xl mx-auto card">
+            <h2 class="section-heading text-primary-dark scroll-reveal">Confirm Your Attendance</h2>
+            <div class="max-w-xl mx-auto card scroll-reveal">
                 <form id="rsvpForm" class="space-y-6" action="https://script.google.com/macros/s/NEW_EVEN_BO_SCRIPT_ID/exec" method="POST">
                     <div class="flex flex-col items-center justify-center">
                         <label for="fullName" class="block text-lg font-sans font-medium mb-2 text-primary-dark">Full Name</label>
@@ -448,6 +465,29 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Function to check if an element is in viewport
+            const isInViewport = (element) => {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.bottom > 0 &&
+                    rect.left < (window.innerWidth || document.documentElement.clientWidth) &&
+                    rect.right > 0
+                );
+            };
+
+            // Scroll reveal animation handler
+            const handleScrollReveal = () => {
+                const elements = document.querySelectorAll('.scroll-reveal');
+                elements.forEach(el => {
+                    // Check if element is 75% visible in viewport
+                    if (isInViewport(el)) {
+                        el.classList.add('visible');
+                    }
+                });
+            };
+
+            // Initialize Swiper
             const swiper = new Swiper(".mySwiper", {
                 slidesPerView: 1,
                 spaceBetween: 30,
@@ -472,6 +512,7 @@
                 },
             });
 
+            // Form Logic (kept the same)
             const rsvpForm = document.getElementById('rsvpForm');
             const attendingRadios = document.querySelectorAll('input[name="attending"]');
             const guestCountSelect = document.getElementById('guestCount');
@@ -486,7 +527,6 @@
 
             function updateFormVisibility() {
                 const isAttending = document.querySelector('input[name="attending"]:checked').value === 'yes';
-                // Only attempt to parse guestCount if attending is 'yes' and the select is visible
                 let guestCount = isAttending ? parseInt(guestCountSelect.value) : 1;
 
                 if (isAttending) {
@@ -497,7 +537,6 @@
                     guestCountContainer.classList.add('hidden');
                     menuPreferenceContainer.classList.add('hidden');
                     dietaryRestrictionsContainer.classList.add('hidden');
-                    // Reset guest count to 1 and update fields when 'no' is selected
                     guestCountSelect.value = '1';
                     guestCount = 1;
                 }
@@ -563,7 +602,6 @@
                 let allFieldsFilled = true;
                 const requiredFields = rsvpForm.querySelectorAll('[required]:not([name="attending"][value="no"]:checked ~ *)');
                 
-                // Exclude conditionally hidden fields from validation if not attending
                 const isAttending = document.querySelector('input[name="attending"]:checked').value === 'yes';
                 
                 requiredFields.forEach(field => {
@@ -581,13 +619,10 @@
                 if (allFieldsFilled) {
                     const formData = new FormData(rsvpForm);
                     
-                    // Create a new FormData object for submission to ensure proper formatting
                     const dataToSend = new FormData();
                     const params = new URLSearchParams();
 
-                    // --- Processing Logic for Google Script ---
                     if (formData.get('attending') === 'yes') {
-                        // Process the main guest's menu preference
                         let mainGuestMenu = formData.get('menuPreference');
                         if (formData.get('halal') === 'Yes') {
                             mainGuestMenu += ', Halal';
@@ -595,7 +630,6 @@
                         dataToSend.append('menuPreference', mainGuestMenu);
                         params.append('menuPreference', mainGuestMenu);
 
-                        // Process additional guests' menu preferences and other fields
                         const guestCount = parseInt(formData.get('guestCount'));
                         for (let i = 2; i <= guestCount; i++) {
                             let guestMenu = formData.get(`menuPreferenceGuest${i}`);
@@ -606,14 +640,12 @@
                             params.append(`menuPreferenceGuest${i}`, guestMenu);
                         }
                     } else {
-                        // If not attending, clear guest/menu data to prevent errors in the script
                         dataToSend.append('guestCount', 0);
                         params.append('guestCount', 0);
                         dataToSend.append('menuPreference', 'Not Attending');
                         params.append('menuPreference', 'Not Attending');
                     }
 
-                    // Add all other non-menu fields to the new FormData and URL params
                     for (const [key, value] of formData.entries()) {
                         if (key.startsWith('menuPreference') || key.startsWith('halal') || key.startsWith('guestName') && formData.get('attending') === 'no') {
                             continue;
@@ -622,7 +654,6 @@
                         params.append(key, value);
                     }
 
-                    // --- Form Submission ---
                     const redirectUrl = 'success.html?' + params.toString();
 
                     fetch(rsvpForm.action, {
@@ -643,7 +674,6 @@
                     });
                 } else {
                     loadingMessage.classList.add('hidden');
-                    // Scroll to the first invalid field
                     const firstInvalid = rsvpForm.querySelector('.is-invalid');
                     if (firstInvalid) {
                         firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -651,6 +681,7 @@
                 }
             });
 
+            // Scroll to Top Button Logic
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 300) {
                     scrollToTopBtn.classList.remove('opacity-0');
@@ -659,6 +690,9 @@
                     scrollToTopBtn.classList.add('opacity-0');
                     scrollToTopBtn.classList.remove('opacity-100');
                 }
+                
+                // Trigger scroll reveal on scroll
+                handleScrollReveal();
             });
 
             scrollToTopBtn.addEventListener('click', () => {
@@ -667,6 +701,9 @@
                     behavior: 'smooth'
                 });
             });
+
+            // Initial check for scroll reveal on page load
+            handleScrollReveal();
         });
     </script>
 </body>
