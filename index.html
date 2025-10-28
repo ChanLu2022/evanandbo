@@ -1,795 +1,305 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Evan & Bo — Our Wedding</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Evan & Bo — Our Wedding</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
-    <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{
+      --bg-900:#0b0b0b;
+      --bg-800:#0f0f10;
+      --muted:#e7e7e7;
+      --gold:#D4AF37;
+      --accent:#b9b9b9;
+    }
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    body{
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(180deg,var(--bg-900)0%,#0d0d0d 100%);
+      color:var(--muted);
+      -webkit-font-smoothing:antialiased;
+    }
 
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    #hero{
+      min-height:84vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-bg{
+      position:absolute;
+      inset:0;
+      background:url('Image13.jpg') center/cover no-repeat;
+      filter:saturate(.85) contrast(.85) brightness(.55);
+      transform:scale(1.05);
+    }
+    .hero-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(11,11,11,.55),rgba(8,8,8,.85));
+    }
+    .hero-card{
+      position:relative;z-index:2;
+      max-width:1100px;width:100%;
+      padding:2.5rem;
+      display:flex;gap:2rem;
+      align-items:center;justify-content:space-between;
+      background:rgba(255,255,255,.02);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:1rem;
+      backdrop-filter:blur(6px);
+    }
+    .names h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(36px,6vw,84px);color:#fff;margin:0;}
+    .amp{color:var(--gold);font-family:'Playfair Display';display:block;margin:6px 0;font-size:clamp(22px,4vw,36px);}
+    .date-pill{
+      text-align:center;padding:1rem 1.35rem;
+      border-radius:12px;border:1px solid rgba(212,175,55,.12);
+      background:rgba(212,175,55,.08);
+    }
+    .date-pill .big{font-family:'Playfair Display';font-size:1.6rem;letter-spacing:.15em;color:#fff;}
+    .date-pill .place{font-size:.95rem;color:#f0f0f0;margin-top:6px;}
 
-    <style>
-        /* ---------- Design Tokens (Modern Luxury) ---------- */
-        :root{
-            --bg-900: #0b0b0b;
-            --bg-800: #0f0f10;
-            --muted: #e7e7e7;
-            --gold: #D4AF37; /* classic gold */
-            --accent: #b9b9b9;
-            --glass: rgba(255,255,255,0.04);
-            --glass-strong: rgba(255,255,255,0.06);
-        }
+    header{position:fixed;top:18px;left:50%;transform:translateX(-50%);width:92%;max-width:1200px;z-index:50;}
+    nav{display:flex;justify-content:space-between;align-items:center;}
+    .nav-left{color:#fff;font-family:'Playfair Display';font-weight:700;}
+    .nav-links a{color:rgba(255,255,255,.85);padding:8px 12px;border-radius:8px;font-size:.9rem;text-transform:uppercase;font-weight:600;transition:.2s;}
+    .nav-links a:hover{background:var(--gold);color:#000;}
 
-        /* Tailwind config (inline override) */
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'lux-bg': 'var(--bg-900)',
-                        'lux-bg-2': 'var(--bg-800)',
-                        'lux-muted': 'var(--muted)',
-                        'lux-gold': 'var(--gold)',
-                        'lux-accent': 'var(--accent)',
-                    },
-                    fontFamily: {
-                        display: ['"Playfair Display"', 'serif'],
-                        sans: ['"Poppins"', 'sans-serif']
-                    }
-                }
-            }
-        };
+    /* Gallery */
+    #gallery{padding:6rem 1rem;background:linear-gradient(180deg,rgba(255,255,255,.01),rgba(0,0,0,.02));}
+    .section-title{font-family:'Playfair Display';font-size:clamp(20px,3vw,32px);text-align:center;margin-bottom:2rem;color:#fff;}
+    .swiper-slide .photo{
+      border-radius:12px;overflow:hidden;
+      height:300px;
+      box-shadow:0 8px 40px rgba(2,2,2,.6);
+      border:1px solid rgba(255,255,255,.04);
+      transition:transform .6s ease,filter .6s ease;
+    }
+    @media(min-width:768px){.swiper-slide .photo{height:360px;}}
+    .swiper-slide .photo img{
+      width:100%;height:100%;object-fit:cover;
+      transition:transform .8s ease;
+    }
+    .swiper-slide:hover .photo img{transform:scale(1.05);}
+    .swiper-button-next,.swiper-button-prev{color:var(--gold);}
+    .swiper-pagination-bullet-active{background:var(--gold);}
 
-        /* ---------- Global ---------- */
-        html,body { height:100%; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(180deg,var(--bg-900) 0%, #0d0d0d 100%);
-            color: var(--muted);
-            -webkit-font-smoothing:antialiased;
-            -moz-osx-font-smoothing:grayscale;
-        }
+    /* Details */
+    #wedding-details{padding:6rem 1rem;background:#0b0b0b;}
+    .details-grid{max-width:1100px;margin:0 auto;display:grid;gap:2rem;}
+    @media(min-width:768px){.details-grid{grid-template-columns:repeat(2,1fr);}}
+    .info-card{
+      background:rgba(255,255,255,.02);
+      border:1px solid rgba(255,255,255,.04);
+      padding:2rem;border-radius:12px;
+    }
+    .info-card h3{font-family:'Playfair Display';color:#fff;margin-bottom:.6rem;}
+    .map-btn{
+      display:inline-block;padding:.7rem 1rem;border-radius:10px;border:1px solid rgba(212,175,55,.2);
+      color:var(--gold);font-weight:700;transition:.2s;
+    }
+    .map-btn:hover{background:rgba(212,175,55,.08);color:#fff;}
 
-        a { text-decoration: none; }
-
-        /* ---------- Hero ---------- */
-        #hero{
-            min-height: 84vh;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            position:relative;
-            overflow:hidden;
-        }
-        /* Parallax background image fills area */
-        .hero-bg {
-            position:absolute;
-            inset:0;
-            background-image: url('Image13.jpg');
-            background-size:cover;
-            background-position: center;
-            transform: scale(1.05);
-            filter: saturate(0.85) contrast(0.85) brightness(0.55);
-            z-index:0;
-        }
-        /* soft gradient overlay */
-        .hero-overlay {
-            position:absolute;
-            inset:0;
-            background: linear-gradient(180deg, rgba(11,11,11,0.55), rgba(8,8,8,0.85));
-            z-index:1;
-        }
-
-        /* floating particles for subtle life */
-        .particle {
-            position:absolute;
-            width:6px;height:6px;
-            background: linear-gradient(180deg, rgba(212,175,55,0.95), rgba(212,175,55,0.6));
-            border-radius:50%;
-            filter: blur(0.6px);
-            opacity:0.14;
-            z-index:2;
-            animation: floatUp linear infinite;
-        }
-        @keyframes floatUp {
-            from { transform: translateY(30px) scale(.8); opacity:0; }
-            10% { opacity:0.18; }
-            100% { transform: translateY(-120vh) scale(1.1); opacity:0; }
-        }
-
-        /* hero content card */
-        .hero-card {
-            position:relative;
-            z-index:3;
-            max-width:1100px;
-            width:100%;
-            padding:3rem;
-            display:flex;
-            gap:2rem;
-            align-items:center;
-            justify-content:space-between;
-            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-            border: 1px solid rgba(255,255,255,0.06);
-            box-shadow: 0 8px 40px rgba(2,2,2,0.6), 0 2px 6px rgba(0,0,0,0.6);
-            border-radius:1rem;
-            backdrop-filter: blur(6px);
-        }
-
-        .names {
-            text-align:left;
-        }
-
-        .names h1 {
-            font-family: 'Playfair Display', serif;
-            font-weight:900;
-            font-size: clamp(36px, 6vw, 84px);
-            letter-spacing: -0.02em;
-            margin:0;
-            color: #fff;
-            line-height:0.9;
-            text-transform:uppercase;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.6);
-        }
-
-        .amp {
-            display:block;
-            font-family:'Playfair Display';
-            font-weight:700;
-            font-size: clamp(22px, 4vw, 36px);
-            color: var(--lux-gold);
-            margin: 6px 0;
-            letter-spacing: 0.2em;
-            transform: translateY(-6px);
-        }
-
-        .sub {
-            margin-top:10px;
-            color: #e6e6e6;
-            font-size: clamp(14px, 1.6vw, 18px);
-            font-weight:500;
-        }
-
-        .date-pill {
-            text-align:center;
-            padding: 1rem 1.35rem;
-            border-radius: 12px;
-            border: 1px solid rgba(212,175,55,0.12);
-            background: linear-gradient(180deg, rgba(212,175,55,0.08), rgba(255,255,255,0.02));
-            color: #fff;
-            min-width: 170px;
-            box-shadow: 0 6px 30px rgba(212,175,55,0.04), inset 0 -2px 6px rgba(0,0,0,0.25);
-        }
-        .date-pill .big {
-            font-family:'Playfair Display';
-            font-weight:700;
-            font-size:1.6rem;
-            letter-spacing:0.15em;
-        }
-        .date-pill .place {
-            font-size:0.95rem;
-            color:#f0f0f0;
-            margin-top:6px;
-        }
-
-        /* ---------- Navigation ---------- */
-        header {
-            position:fixed;
-            top:18px;
-            left:50%;
-            transform:translateX(-50%);
-            z-index:60;
-            width:92%;
-            max-width:1200px;
-        }
-        nav {
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            gap:2rem;
-        }
-        .nav-left { color:#fff; font-family:'Playfair Display'; font-weight:700; letter-spacing:0.12em; }
-        .nav-links a {
-            color: rgba(255,255,255,0.85);
-            padding:10px 14px;
-            border-radius:8px;
-            font-weight:600;
-            text-transform:uppercase;
-            font-size:0.9rem;
-            transition: all .22s ease;
-        }
-        .nav-links a:hover {
-            color:var(--lux-bg);
-            background: var(--lux-gold);
-            transform: translateY(-2px);
-        }
-
-        /* ---------- Gallery (Photo Fix) ---------- */
-        #gallery { padding:6rem 1rem; background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02)); }
-        .section-title { font-family:'Playfair Display'; font-size: clamp(20px, 3vw, 32px); color:#fff; text-align:center; margin-bottom:2rem; letter-spacing:0.12em; }
-        .swiper-slide .photo {
-            border-radius:12px;
-            overflow:hidden;
-            /* FIX: changed from 4/3 to 1/1 to make photos square */
-            aspect-ratio: 1/1; 
-            box-shadow: 0 8px 40px rgba(2,2,2,0.6);
-            border: 1px solid rgba(255,255,255,0.04);
-            transition: transform .6s ease, filter .6s ease;
-        }
-        /* Allow certain slides to use a different aspect ratio if the image is tall (e.g., Image2.jpg) */
-        .swiper-slide.tall-ratio .photo {
-            aspect-ratio: 3/4; /* Example: more vertical aspect ratio */
-        }
-
-        .swiper-slide .photo img { 
-            width:100%; 
-            height:100%; 
-            /* FIX: default to cover, some images will be overridden in the markup for 'contain' */
-            object-fit:cover; 
-            display:block; 
-            transition: transform .8s ease; 
-        }
-
-        /* Add a class to use 'contain' object-fit for photos that should not be cropped */
-        .swiper-slide .photo.photo-contain img {
-            object-fit: contain;
-            /* Add a background color to fill the bars if using 'contain' on a dark theme */
-            background-color: var(--bg-800); 
-        }
-
-        .swiper-slide:hover .photo { transform: translateY(-8px) scale(1.02); filter: saturate(1.05) contrast(1.02); }
-        .swiper-button-next, .swiper-button-prev { color: var(--lux-gold); }
-        .swiper-pagination-bullet-active { background: var(--lux-gold); box-shadow: 0 0 6px rgba(212,175,55,0.3); }
-
-        /* ---------- Details Section ---------- */
-        #wedding-details { padding:6rem 1rem; background: linear-gradient(180deg, rgba(10,10,10,0.98), rgba(11,11,11,0.97)); }
-        .details-grid { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(2,1fr); gap:2rem; }
-        .info-card {
-            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-            border: 1px solid rgba(255,255,255,0.04);
-            padding:2rem;
-            border-radius:12px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.6);
-        }
-        .info-card h3 { font-family:'Playfair Display'; color:#fff; letter-spacing:0.12em; margin-bottom:0.6rem; font-weight:700; text-transform:uppercase; }
-        .info-card p { color: #e6e6e6; line-height:1.6; }
-
-        .map-btn {
-            display:inline-block;
-            padding:0.7rem 1rem;
-            border-radius:10px;
-            background:transparent;
-            color:var(--lux-gold);
-            border: 1px solid rgba(212,175,55,0.12);
-            font-weight:700;
-            transition: all .2s ease;
-        }
-        .map-btn:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(212,175,55,0.06); background: rgba(212,175,55,0.04); color:#fff; }
-
-        /* ---------- RSVP (Overlap Fix) ---------- */
-        #rsvp { padding:6rem 1rem; background: linear-gradient(180deg, rgba(243,243,243,0.02), rgba(250,250,250,0.01)); color: var(--lux-bg-2); }
-        .rsvp-wrap { max-width:820px; margin:0 auto; display:grid; grid-template-columns: 1fr 360px; gap:2rem; align-items:start; }
-        .rsvp-form {
-            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-            padding:2rem;
-            border-radius:12px;
-            border:1px solid rgba(0,0,0,0.06);
-            box-shadow: 0 6px 30px rgba(0,0,0,0.45);
-        }
-        
-        /* FIX: Added form-group for better spacing and structure (used for all input wraps) */
-        .form-group {
-            margin-bottom: 1.5rem; /* Consistent vertical spacing */
-        }
-
-        label { 
-            display:block; 
-            font-weight:600; 
-            margin-bottom:0.5rem; 
-            color:var(--lux-bg-2); 
-        }
-
-        /* FIX: Style for the radio/checkbox container to prevent overlap */
-        .radio-group, .checkbox-group {
-            display: flex;
-            gap: 1.5rem; /* Increased gap for spacing */
-            align-items: center;
-            margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-        .radio-group label, .checkbox-group label {
-            display: flex; /* Makes the radio/checkbox and text align nicely */
-            align-items: center;
-            margin-bottom: 0; /* Remove bottom margin from inner label */
-            color: #fff; /* Reverting color back for these elements inside the form */
-            font-weight: 400;
-        }
-
-        input[type="radio"], input[type="checkbox"] {
-            width: auto;
-            margin-right: 0.5rem;
-            /* Reset specific input styles that might apply to text inputs */
-            padding: 0;
-            height: auto;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        input, textarea, select {
-            width:100%;
-            padding:0.9rem 1rem;
-            border-radius:10px;
-            border: 1px solid rgba(0,0,0,0.06);
-            background: rgba(255,255,255,0.02);
-            color: #fff;
-            outline:none;
-            font-size:0.95rem;
-            transition: all .18s ease;
-            /* Ensure text inputs and selects are styled consistently */
-            height: auto; 
-        }
-        input:focus, textarea:focus, select:focus { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.5); border-color: rgba(212,175,55,0.18); }
-        .small-note { font-size:0.85rem; color: #bfbfbf; margin-top:0.35rem; }
-
-        .rsvp-sidebar {
-            padding:1.6rem;
-            border-radius:12px;
-            background: linear-gradient(180deg, rgba(10,10,10,0.9), rgba(16,16,16,0.9));
-            border: 1px solid rgba(255,255,255,0.04);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.6);
-            color:#fff;
-        }
-        .side-title { font-family:'Playfair Display'; font-weight:700; color:var(--lux-gold); letter-spacing:0.12em; margin-bottom:0.6rem; }
-        .btn-submit {
-            display:inline-block;
-            padding: 0.9rem 1.4rem;
-            border-radius:10px;
-            background: linear-gradient(90deg, rgba(212,175,55,1), rgba(180,140,55,0.95));
-            color: #0b0b0b;
-            font-weight:800;
-            letter-spacing:0.08em;
-            border: none;
-            cursor:pointer;
-            transition: transform .16s ease, box-shadow .16s ease;
-            width:100%;
-        }
-        .btn-submit:hover { transform: translateY(-4px); box-shadow: 0 10px 40px rgba(212,175,55,0.14); }
-
-        /* small responsive adjustments */
-        @media (max-width: 980px){
-            .rsvp-wrap { grid-template-columns: 1fr; }
-            header { top:12px; }
-            .hero-card { flex-direction:column; gap:1.2rem; align-items:center; text-align:center; padding:2rem; }
-            .names { text-align:center; }
-            .date-pill { min-width: auto; }
-            .details-grid { grid-template-columns:1fr; }
-            .nav-links { display:none; }
-        }
-
-        /* subtle entrance animations */
-        .reveal { opacity:0; transform: translateY(12px) scale(.995); transition: all .6s cubic-bezier(.12,.9,.26,1); }
-        .reveal.visible { opacity:1; transform: translateY(0) scale(1); }
-
-        /* small utility */
-        .uppercase { text-transform:uppercase; letter-spacing:0.12em; }
-    </style>
+    /* RSVP */
+    #rsvp{padding:6rem 1rem;background:linear-gradient(180deg,rgba(243,243,243,.02),rgba(250,250,250,.01));color:#fff;}
+    .rsvp-wrap{max-width:820px;margin:0 auto;display:grid;gap:2rem;}
+    @media(min-width:980px){.rsvp-wrap{grid-template-columns:1fr 360px;}}
+    .rsvp-form{
+      background:rgba(255,255,255,.02);
+      padding:2rem;border-radius:12px;
+      border:1px solid rgba(255,255,255,.06);
+    }
+    label{display:block;font-weight:600;margin-bottom:.5rem;}
+    input,textarea,select{
+      width:100%;padding:.85rem 1rem;margin-bottom:1rem;
+      border-radius:10px;border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.05);color:#fff;
+    }
+    input[type=radio],input[type=checkbox]{width:auto;margin-right:.5rem;margin-bottom:0;}
+    .radio-group,.checkbox-group{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:1rem;}
+    .radio-group label,.checkbox-group label{display:flex;align-items:center;gap:.4rem;margin:0;}
+    .btn-submit{
+      width:100%;padding:.9rem 1.2rem;border-radius:10px;
+      background:linear-gradient(90deg,var(--gold),#b89134);
+      color:#000;font-weight:800;letter-spacing:.08em;
+    }
+    .rsvp-sidebar{
+      padding:1.6rem;border-radius:12px;background:#0e0e0e;
+      border:1px solid rgba(255,255,255,.04);
+    }
+    footer{padding:2rem 1rem;text-align:center;color:#9f9f9f;}
+  </style>
 </head>
 <body>
 
-    <div id="particles" aria-hidden="true"></div>
+<header>
+  <nav class="px-4 py-2">
+    <div class="nav-left">EVAN & BO</div>
+    <div class="nav-links hidden md:flex gap-3">
+      <a href="#gallery">Gallery</a>
+      <a href="#wedding-details">Details</a>
+      <a href="#rsvp">RSVP</a>
+    </div>
+  </nav>
+</header>
 
-    <header>
-        <nav class="mx-auto flex items-center justify-between px-4 py-2">
-            <div class="nav-left text-white text-xl">EVAN & BO</div>
-            <div class="nav-links flex items-center gap-3">
-                <a href="#gallery" class="hidden md:inline">Gallery</a>
-                <a href="#wedding-details" class="hidden md:inline">Details</a>
-                <a href="#rsvp" class="hidden md:inline">RSVP</a>
-            </div>
-        </nav>
-    </header>
+<main class="mt-6">
+  <section id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-card mx-6 md:mx-auto">
+      <div class="names text-center md:text-left">
+        <h1>EVAN</h1>
+        <span class="amp">&</span>
+        <h1>BO</h1>
+        <p class="mt-4">The marriage celebration — Novotel Yangon Ballroom</p>
+      </div>
+      <div class="date-pill">
+        <div class="big">23.11.2025</div>
+        <div class="place">Novotel Hotel — Yangon Ballroom</div>
+      </div>
+    </div>
+  </section>
 
-    <main class="mt-6">
-        <section id="hero" class="relative">
-            <div class="hero-bg" id="heroBg"></div>
-            <div class="hero-overlay"></div>
-
-            <div class="hero-card mx-6 md:mx-auto reveal" style="max-width:1100px;">
-                <div class="names">
-                    <h1 class="reveal" style="animation-delay:120ms;">EVAN</h1>
-                    <span class="amp reveal" style="animation-delay:220ms;">&</span>
-                    <h1 class="reveal" style="animation-delay:320ms;">BO</h1>
-
-                    <p class="sub mt-4 reveal" style="animation-delay:420ms;">The marriage celebration — Novotel Yangon Ballroom</p>
-                </div>
-
-                <div class="date-pill reveal" style="animation-delay:520ms;">
-                    <div class="big">23.11.2025</div>
-                    <div class="place">Novotel Hotel — Yangon Ballroom</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="gallery" class="">
-            <h2 class="section-title reveal">Our Moments</h2>
-            <div class="max-w-7xl mx-auto px-4 reveal" style="animation-delay:80ms;">
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="photo photo-contain"><img src="Image4.jpg" alt="Couple embracing" /></div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="photo"><img src="Image11.jpg" alt="Scenic travel" /></div>
-                        </div>
-                        <div class="swiper-slide tall-ratio">
-                            <div class="photo photo-contain"><img src="Image2.jpg" alt="Candid laugh" /></div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="photo"><img src="Image5.jpg" alt="Elegant dinner" /></div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="photo"><img src="Image8.jpg" alt="Celebrating with champagne" /></div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="photo"><img src="Image7.jpg" alt="Looking into eyes" /></div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="wedding-details">
-            <div class="max-w-6xl mx-auto px-4 reveal" style="animation-delay:120ms;">
-                <h2 class="section-title" style="color:var(--lux-gold); margin-bottom:1.5rem;">Event Information</h2>
-
-                <div class="details-grid">
-                    <div class="info-card">
-                        <h3>Venue</h3>
-                        <p class="mb-3 font-semibold">Novotel Hotel — Yangon Ballroom</p>
-                        <p>459 Pyay Road, Kamayut Township, Yangon, Myanmar</p>
-                        <div class="mt-6">
-                            <a class="map-btn" href="https://maps.app.goo.gl/zxjKDBLKd5sBdqog8" target="_blank" rel="noreferrer">Get Directions</a>
-                        </div>
-                    </div>
-
-                    <div class="info-card">
-                        <h3>Timing & Dress Code</h3>
-                        <p class="mb-2 font-semibold">Sunday, November 23, 2025</p>
-                        <p class="mb-2">10:00 AM — Guest Arrival</p>
-                        <p class="mb-2">10:30 AM — စုလျားရစ်ပတ်ထိမ်းမြားမင်္ဂလာ</p>
-                        <p class="mb-2">11:00 AM — Lunch Reception</p>
-
-                        <div class="mt-6">
-                            <p class="font-semibold text-accent uppercase" style="color:var(--lux-gold);">Dress Code</p>
-                            <p class="mt-2">Burmese Attire (Formal)</p>
-                            <p class="small-note mt-4">Kindly RSVP by November 10, 2025</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="rsvp">
-            <div class="max-w-6xl mx-auto px-4 reveal" style="animation-delay:160ms;">
-                <h2 class="section-title" style="color:#fff;">Confirm Your Attendance (English လိုသာထည့်သွင်းပေးပို့ပါ)</h2>
-
-                <div class="rsvp-wrap mt-6">
-                    <form id="rsvpForm" class="rsvp-form" action="https://script.google.com/macros/s/NEW_EVEN_BO_SCRIPT_ID/exec" method="POST">
-                        <div class="form-group">
-                            <label for="fullName">Full Name (နာမည်)</label>
-                            <input id="fullName" name="fullName" required placeholder="Your full name" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="contactNumber">Contact Number (ဆက်သွယ်ရန် နံပါတ်)</label>
-                            <input id="contactNumber" name="contactNumber" type="tel" required placeholder="+95 ..." />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email Address (အီးမေးလ်)</label>
-                            <input id="email" name="email" type="email" required placeholder="you@example.com" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="address">Address (Township) (လိပ်စာ/မြို့နယ်)</label>
-                            <textarea id="address" name="address" rows="3" required placeholder="Township / Address"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="uppercase">Will you be attending the wedding? (တက်ရောက်နိုင်ပါသလား)</label>
-                            <div class="radio-group">
-                                <label>
-                                    <input type="radio" name="attending" value="yes" checked>
-                                    <span>YES</span>
-                                </label>
-                                <label>
-                                    <input type="radio" name="attending" value="no">
-                                    <span>NO</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div id="guestCountContainer" class="form-group">
-                            <label for="guestCount">Number of Guests (including yourself)</label>
-                            <select id="guestCount" name="guestCount">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                        </div>
-
-                        <div id="guestNamesContainer"></div>
-
-                        <div id="menuPreferenceContainer" class="form-group">
-                            <label>Menu Preference (Main Guest)</label>
-                            <div class="radio-group">
-                                <label>
-                                    <input type="radio" name="menuPreference" value="non-vegetarian" checked> Non-Veg
-                                </label>
-                                <label>
-                                    <input type="radio" name="menuPreference" value="vegetarian"> Veg
-                                </label>
-                            </div>
-                            <div class="checkbox-group">
-                                <label for="halalOption">
-                                    <input type="checkbox" id="halalOption" name="halal" value="Yes">
-                                    <span>Halal Option</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="dietaryRestrictions">Dietary Restrictions / Allergies (Optional)</label>
-                            <textarea id="dietaryRestrictions" name="dietaryRestrictions" rows="3" placeholder="e.g., shellfish allergy"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">A Special Message (Optional)</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Wishing you a lifetime of happiness!"></textarea>
-                        </div>
-
-                        <input type="submit" style="display:none" aria-hidden="true" />
-                    </form>
-
-                    <aside class="rsvp-sidebar">
-                        <div class="side-title">RSVP</div>
-                        <p class="mb-4">We look forward to celebrating with you. Please complete the RSVP form — accurate guest counts help us arrange seating and menu.</p>
-
-                        <div class="mb-3">
-                            <div class="font-semibold text-sm">RSVP Deadline</div>
-                            <div class="small-note">November 10, 2025</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <div class="font-semibold text-sm">Dress Code</div>
-                            <div class="small-note">Burmese Attire — Formal</div>
-                        </div>
-
-                        <div id="submitWrap" class="mt-6">
-                            <button id="submitBtn" class="btn-submit" type="button" title="Send RSVP">Send RSVP</button>
-                            <div id="loadingMessage" class="small-note mt-2 hidden">Sending... please wait</div>
-                        </div>
-                    </aside>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="py-6 text-center text-sm" style="background:transparent; color:#9f9f9f;">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="font-semibold text-white">EVAN & BO</div>
-            <div class="mt-1">© 2025. All Rights Reserved.</div>
-            <div class="small-note mt-2">A Modern Luxury Celebration</div>
+  <section id="gallery">
+    <h2 class="section-title">Our Moments</h2>
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><div class="photo"><img src="Image4.jpg" alt=""></div></div>
+          <div class="swiper-slide"><div class="photo"><img src="Image11.jpg" alt=""></div></div>
+          <div class="swiper-slide"><div class="photo"><img src="Image2.jpg" alt=""></div></div>
+          <div class="swiper-slide"><div class="photo"><img src="Image5.jpg" alt=""></div></div>
+          <div class="swiper-slide"><div class="photo"><img src="Image8.jpg" alt=""></div></div>
+          <div class="swiper-slide"><div class="photo"><img src="Image7.jpg" alt=""></div></div>
         </div>
-    </footer>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+  </section>
 
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <section id="wedding-details">
+    <h2 class="section-title" style="color:var(--gold);">Event Information</h2>
+    <div class="details-grid">
+      <div class="info-card">
+        <h3>Venue</h3>
+        <p><strong>Novotel Hotel — Yangon Ballroom</strong><br>459 Pyay Road, Kamayut Township, Yangon, Myanmar</p>
+        <a href="https://maps.app.goo.gl/zxjKDBLKd5sBdqog8" target="_blank" class="map-btn mt-4 inline-block">Get Directions</a>
+      </div>
+      <div class="info-card">
+        <h3>Timing & Dress Code</h3>
+        <p>Sunday, November 23, 2025<br>10:00 AM — Guest Arrival<br>10:30 AM — စုလျားရစ်ပတ်ထိမ်းမြားမင်္ဂလာ<br>11:00 AM — Lunch Reception</p>
+        <p class="mt-4" style="color:var(--gold);font-weight:bold;">Dress Code</p>
+        <p>Burmese Attire (Formal)</p>
+        <p class="mt-3 text-sm text-gray-400">Kindly RSVP by November 10, 2025</p>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // ====== Small helpers and initial UI setup ======
-        document.addEventListener('DOMContentLoaded', function () {
-            // particles: generate subtle gold sparkles
-            const particles = document.getElementById('particles');
-            for (let i = 0; i < 18; i++) {
-                const p = document.createElement('div');
-                p.className = 'particle';
-                const left = Math.random() * 100;
-                const size = 3 + Math.random()*6;
-                p.style.left = left + 'vw';
-                p.style.bottom = (-20 - Math.random()*40) + 'px';
-                p.style.width = size + 'px';
-                p.style.height = size + 'px';
-                p.style.opacity = 0.06 + Math.random()*0.18;
-                p.style.animationDuration = 10 + Math.random()*18 + 's';
-                p.style.animationDelay = -Math.random()*12 + 's';
-                particles.appendChild(p);
-            }
+  <section id="rsvp">
+    <h2 class="section-title">Confirm Your Attendance</h2>
+    <div class="rsvp-wrap">
+      <form id="rsvpForm" class="rsvp-form" action="https://script.google.com/macros/s/NEW_EVEN_BO_SCRIPT_ID/exec" method="POST">
+        <label for="fullName">Full Name (နာမည်)</label>
+        <input id="fullName" name="fullName" required>
 
-            // Swiper init
-            const swiper = new Swiper('.mySwiper', {
-                slidesPerView: 1,
-                spaceBetween: 20,
-                loop: true,
-                centeredSlides: true,
-                pagination: { el: '.swiper-pagination', clickable: true },
-                navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-                breakpoints: {
-                    640: { slidesPerView: 2, spaceBetween: 18 },
-                    1024: { slidesPerView: 3, spaceBetween: 24 }
-                },
-                autoplay: { delay: 4500, disableOnInteraction: false },
-                speed: 900
-            });
+        <label for="contactNumber">Contact Number (ဆက်သွယ်ရန် နံပါတ်)</label>
+        <input id="contactNumber" name="contactNumber" type="tel" required>
 
-            // Intersection Observer for reveals
-            const revealEls = document.querySelectorAll('.reveal, .section-title');
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        io.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.08 });
+        <label for="email">Email Address (အီးမေးလ်)</label>
+        <input id="email" name="email" type="email" required>
 
-            revealEls.forEach(el => io.observe(el));
+        <label for="address">Address (Township)</label>
+        <textarea id="address" name="address" rows="2" required></textarea>
 
-            // Parallax subtle move on mouse for hero BG
-            const heroBg = document.getElementById('heroBg');
-            document.getElementById('hero').addEventListener('mousemove', (e) => {
-                const x = (e.clientX / window.innerWidth - 0.5) * 8; // small range
-                const y = (e.clientY / window.innerHeight - 0.5) * 6;
-                heroBg.style.transform = `translate(${x}px, ${y}px) scale(1.06)`;
-            });
-            document.getElementById('hero').addEventListener('mouseleave', () => {
-                heroBg.style.transform = 'translate(0px,0px) scale(1.05)';
-            });
+        <label>Will you be attending the wedding?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="attending" value="yes" checked>YES</label>
+          <label><input type="radio" name="attending" value="no">NO</label>
+        </div>
 
-            // ===== RSVP form dynamic fields & submission logic (keeps your original behavior) =====
-            const rsvpForm = document.getElementById('rsvpForm');
-            const attendingRadios = rsvpForm.querySelectorAll('input[name="attending"]');
-            const guestCountSelect = document.getElementById('guestCount');
-            const guestNamesContainer = document.getElementById('guestNamesContainer');
-            const menuPreferenceContainer = document.getElementById('menuPreferenceContainer');
-            const submitBtn = document.getElementById('submitBtn');
-            const loadingMessage = document.getElementById('loadingMessage');
+        <label for="guestCount">Number of Guests (including yourself)</label>
+        <select id="guestCount" name="guestCount"><option>1</option><option>2</option><option>3</option></select>
 
-            function updateGuestFields() {
-                const attending = rsvpForm.querySelector('input[name="attending"]:checked').value === 'yes';
-                const guestCount = attending ? parseInt(guestCountSelect.value || '1') : 1;
+        <div id="guestNamesContainer"></div>
 
-                guestNamesContainer.innerHTML = '';
-                if (attending && guestCount > 1) {
-                    for (let i = 2; i <= guestCount; i++) {
-                        // FIX: added form-group to dynamically added fields
-                        const div = document.createElement('div');
-                        div.className = 'form-group'; 
-                        div.innerHTML = `
-                            <label for="guestName${i}">Guest ${i} Full Name</label>
-                            <input type="text" id="guestName${i}" name="guestName${i}" required placeholder="Guest ${i} name">
-                        `;
-                        guestNamesContainer.appendChild(div);
+        <label>Menu Preference (Main Guest)</label>
+        <div class="radio-group">
+          <label><input type="radio" name="menuPreference" value="non-vegetarian" checked>Non-Veg</label>
+          <label><input type="radio" name="menuPreference" value="vegetarian">Veg</label>
+        </div>
 
-                        // Also add menu preference for additional guests
-                        const menuDiv = document.createElement('div');
-                        menuDiv.className = 'form-group';
-                        menuDiv.innerHTML = `
-                            <label>Menu Preference (Guest ${i})</label>
-                            <div class="radio-group">
-                                <label>
-                                    <input type="radio" name="menuPreferenceGuest${i}" value="non-vegetarian" checked> Non-Veg
-                                </label>
-                                <label>
-                                    <input type="radio" name="menuPreferenceGuest${i}" value="vegetarian"> Veg
-                                </label>
-                            </div>
-                            <div class="checkbox-group">
-                                <label for="halalGuest${i}">
-                                    <input type="checkbox" id="halalGuest${i}" name="halalGuest${i}" value="Yes">
-                                    <span>Halal Option</span>
-                                </label>
-                            </div>
-                        `;
-                        guestNamesContainer.appendChild(menuDiv);
-                    }
-                }
-            }
+        <div class="checkbox-group">
+          <label><input type="checkbox" id="halalOption" name="halal" value="Yes">Halal Option</label>
+        </div>
 
-            attendingRadios.forEach(r => r.addEventListener('change', () => {
-                // hide guest-count if not attending
-                const isAttend = rsvpForm.querySelector('input[name="attending"]:checked').value === 'yes';
-                document.getElementById('guestCountContainer').style.display = isAttend ? 'block' : 'none';
-                menuPreferenceContainer.style.display = isAttend ? 'block' : 'none';
-                updateGuestFields();
-            }));
+        <label for="dietaryRestrictions">Dietary Restrictions / Allergies</label>
+        <textarea id="dietaryRestrictions" name="dietaryRestrictions" rows="2"></textarea>
 
-            guestCountSelect.addEventListener('change', updateGuestFields);
-            updateGuestFields();
+        <label for="message">A Special Message</label>
+        <textarea id="message" name="message" rows="3"></textarea>
+      </form>
 
-            // submit handler (keeps your endpoint)
-            submitBtn.addEventListener('click', function (ev) {
-                ev.preventDefault();
-                loadingMessage.classList.remove('hidden');
-                submitBtn.disabled = true;
+      <aside class="rsvp-sidebar">
+        <h3 style="color:var(--gold);font-family:'Playfair Display';font-weight:700;">RSVP</h3>
+        <p>We look forward to celebrating with you. Please fill out the RSVP form — accurate guest counts help us arrange seating and menu.</p>
+        <p class="mt-4 text-sm">RSVP Deadline: November 10, 2025</p>
+        <button id="submitBtn" class="btn-submit mt-5" type="button">Send RSVP</button>
+        <div id="loadingMessage" class="text-sm mt-2 hidden">Sending... please wait</div>
+      </aside>
+    </div>
+  </section>
+</main>
 
-                // simple required check
-                const required = rsvpForm.querySelectorAll('[required]');
-                let ok = true;
-                required.forEach(f => {
-                    if (!f.value.trim()) { ok = false; f.classList.add('border-red-400'); }
-                    else f.classList.remove('border-red-400');
-                });
+<footer>
+  <p class="font-semibold text-white">EVAN & BO</p>
+  <p>© 2025. All Rights Reserved.</p>
+</footer>
 
-                if (!ok) {
-                    loadingMessage.textContent = 'Please fill required fields.';
-                    submitBtn.disabled = false;
-                    setTimeout(()=> loadingMessage.classList.add('hidden'), 2200);
-                    return;
-                }
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  new Swiper('.mySwiper',{
+    slidesPerView:1,spaceBetween:20,loop:true,
+    pagination:{el:'.swiper-pagination',clickable:true},
+    navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'},
+    breakpoints:{640:{slidesPerView:2,spaceBetween:18},1024:{slidesPerView:3,spaceBetween:24}},
+  });
 
-                const formData = new FormData(rsvpForm);
-                // combine halal info for main guest & guests similar to original behavior
-                if (formData.get('attending') === 'yes') {
-                    let mainMenu = formData.get('menuPreference') || 'non-vegetarian';
-                    if (formData.get('halal') === 'Yes') mainMenu += ', Halal';
-                    formData.set('menuPreference', mainMenu);
+  // RSVP dynamic guest names
+  const form=document.getElementById('rsvpForm');
+  const guestCount=document.getElementById('guestCount');
+  const guestNamesContainer=document.getElementById('guestNamesContainer');
+  guestCount.addEventListener('change',()=>{
+    guestNamesContainer.innerHTML='';
+    for(let i=2;i<=parseInt(guestCount.value);i++){
+      const div=document.createElement('div');
+      div.innerHTML=`<label for="guestName${i}">Guest ${i} Name</label><input id="guestName${i}" name="guestName${i}" required>`;
+      guestNamesContainer.appendChild(div);
+    }
+  });
 
-                    const cnt = parseInt(formData.get('guestCount') || '1');
-                    for (let i=2; i<=cnt; i++) {
-                        const m = formData.get(`menuPreferenceGuest${i}`);
-                        if (m) {
-                            if (formData.get(`halalGuest${i}`) === 'Yes') formData.set(`menuPreferenceGuest${i}`, m + ', Halal');
-                        }
-                    }
-                } else {
-                    formData.set('guestCount', 0);
-                    formData.set('menuPreference', 'Not Attending');
-                }
-
-                // Send same way to your apps script
-                fetch(rsvpForm.action, {
-                    method: 'POST',
-                    body: formData
-                }).then(resp => {
-                    if (resp.ok) {
-                        // redirect with params for success page (as original)
-                        const params = new URLSearchParams();
-                        for (const [k,v] of formData.entries()) params.append(k,v);
-                        window.location.href = 'success.html?' + params.toString();
-                    } else {
-                        loadingMessage.textContent = 'Submission failed — please try again.';
-                        submitBtn.disabled = false;
-                        setTimeout(()=> loadingMessage.classList.add('hidden'), 3000);
-                    }
-                }).catch(err => {
-                    console.error(err);
-                    loadingMessage.textContent = 'Network error — please try again.';
-                    submitBtn.disabled = false;
-                    setTimeout(()=> loadingMessage.classList.add('hidden'), 3000);
-                });
-            });
-
-            // small accessibility: pressing Enter inside form should trigger send
-            rsvpForm.addEventListener('keydown', function(e){
-                if (e.key === 'Enter' && (e.target.tagName !== 'TEXTAREA')) {
-                    e.preventDefault();
-                    submitBtn.click();
-                }
-            });
-
-            // simple fade-in for hero typography on load
-            setTimeout(()=> {
-                document.querySelectorAll('.hero-card .reveal').forEach((el,i)=>{
-                    el.style.transition = 'all .9s cubic-bezier(.12,.9,.26,1)';
-                    el.style.transitionDelay = (i*90)+'ms';
-                    el.classList.add('visible');
-                });
-            }, 120);
-        });
-    </script>
+  const submitBtn=document.getElementById('submitBtn');
+  const loadingMessage=document.getElementById('loadingMessage');
+  submitBtn.addEventListener('click',function(e){
+    e.preventDefault();
+    loadingMessage.classList.remove('hidden');
+    submitBtn.disabled=true;
+    fetch(form.action,{method:'POST',body:new FormData(form)})
+      .then(r=>{
+        if(r.ok)window.location.href='success.html';
+        else throw new Error('fail');
+      })
+      .catch(()=>loadingMessage.textContent='Error. Please try again.')
+  });
+});
+</script>
 </body>
 </html>
