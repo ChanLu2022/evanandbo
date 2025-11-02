@@ -77,6 +77,18 @@
       border-radius:1rem;
       backdrop-filter:blur(6px);
     }
+    /* NEW: Logo styling */
+    .hero-logo{
+      display:flex;
+      justify-content:center;
+      margin-bottom:1.5rem;
+    }
+    .hero-logo img{
+      max-width:200px;
+      height:auto;
+      filter:drop-shadow(0 0 10px rgba(0,0,0,.5));
+    }
+    /* END NEW: Logo styling */
     .names h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(36px,6vw,84px);color:#fff;margin:0;}
     .amp{color:var(--gold);font-family:'Playfair Display';display:block;margin:6px 0;font-size:clamp(22px,4vw,36px);}
     .date-pill{
@@ -89,9 +101,41 @@
 
     header{position:fixed;top:18px;left:50%;transform:translateX(-50%);width:92%;max-width:1200px;z-index:50;}
     nav{display:flex;justify-content:space-between;align-items:center;}
-    .nav-left{color:#fff;font-family:'Playfair Display';font-weight:700;}
+    /* UPDATED: Nav logo styling */
+    .nav-left img{height:28px;}
+    /* END UPDATED: Nav logo styling */
     .nav-links a{color:rgba(255,255,255,.85);padding:8px 12px;border-radius:8px;font-size:.9rem;text-transform:uppercase;font-weight:600;transition:.2s;}
     .nav-links a:hover{background:var(--gold);color:#000;}
+    
+    /* NEW: Love Story Section Styling */
+    #love-story{
+        padding:8rem 1.5rem 6rem;
+        background:transparent;
+        text-align:center;
+    }
+    .story-text{
+        max-width:800px;
+        margin:0 auto;
+        font-family:'Playfair Display',serif; /* Romantic font */
+        font-size:clamp(1.1rem, 2vw, 1.4rem);
+        line-height:1.8;
+        color:rgba(255,255,255,.9);
+        font-weight:400;
+        letter-spacing:0.02em;
+        opacity:0; /* Initial state for fade-in effect */
+        transform:translateY(20px);
+        transition:opacity 1s ease-out, transform 1s ease-out;
+    }
+    .story-text.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .story-text strong{
+        color:var(--gold);
+        font-weight:600;
+    }
+    /* END NEW: Love Story Section Styling */
+
 
     /* Gallery */
     #gallery{padding:6rem 1rem;background:linear-gradient(180deg,rgba(255,255,255,.01),rgba(0,0,0,.02));}
@@ -166,7 +210,9 @@
 
 <header>
   <nav class="px-4 py-2">
-    <div class="nav-left">EVAN & BO</div>
+    <div class="nav-left">
+      <img src="eblogo.png" alt="Evan & Bo Logo" style="height:28px;">
+    </div>
     <div class="nav-links hidden md:flex gap-3">
       <a href="#gallery">Gallery</a>
       <a href="#wedding-details">Details</a>
@@ -181,18 +227,29 @@
     <div class="hero-overlay"></div>
     <div class="hero-card mx-6 md:mx-auto">
       <div class="names text-center md:text-left">
+        <div class="hero-logo md:hidden">
+          <img src="eblogo.png" alt="Evan & Bo Monogram">
+        </div>
         <h1>EVAN</h1>
         <span class="amp">&</span>
         <h1>BO</h1>
         <p class="mt-4">The marriage celebration — Novotel Yangon Ballroom</p>
       </div>
       <div class="date-pill">
-        <div class="big">23.11.2025</div>
+        <div class="hero-logo hidden md:flex">
+          <img src="eblogo.png" alt="Evan & Bo Monogram">
+        </div>
+        
         <div class="place">Novotel Hotel — Yangon Ballroom</div>
       </div>
     </div>
   </section>
 
+  <section id="love-story">
+    <p class="story-text">
+      Our journey began not in a fairytale, but in a quiet moment when one of us felt broken and alone. Yet, the instant our eyes met, that solitude dissolved into a profound certainty. My love for you started that very day ,a recognition that **fate had finally led me home**. Now, we stand at the threshold of forever, ready to pledge our lives to one another. We ask you to join us as we celebrate this beautiful, unexpected gift and witness the happily ever after we were destined to build together.
+    </p>
+  </section>
   <section id="gallery">
     <h2 class="section-title">Our Moments</h2>
     <div class="max-w-7xl mx-auto px-4">
@@ -286,12 +343,32 @@
 </main>
 
 <footer>
-  <p class="font-semibold text-white">EVAN & BO</p>
+  <p class="font-semibold text-white"><img src="eblogo.png" alt="Evan & Bo Logo" style="height:24px; display:inline-block; vertical-align:middle; margin-right:5px;"></p>
   <p>© 2025. All Rights Reserved.</p>
 </footer>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
+// Function to check if an element is in the viewport
+function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+// Function to handle the scroll event for the fade-in effect
+function handleScroll() {
+    const storyText = document.querySelector('.story-text');
+    if (storyText && isElementInViewport(storyText)) {
+        storyText.classList.add('visible');
+    }
+}
+
+
 document.addEventListener('DOMContentLoaded',function(){
   // --- Particle Generation Script ---
   const particlesContainer = document.getElementById('particles-js');
@@ -309,6 +386,12 @@ document.addEventListener('DOMContentLoaded',function(){
     particlesContainer.appendChild(particle);
   }
   // --- END Particle Generation Script ---
+
+  // NEW: Initial check and scroll event listener for Love Story fade-in
+  handleScroll(); // Check on page load
+  window.addEventListener('scroll', handleScroll);
+  // END NEW
+
 
   new Swiper('.mySwiper',{
     slidesPerView:1,spaceBetween:20,loop:true,
